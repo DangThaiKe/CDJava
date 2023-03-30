@@ -1,2 +1,0 @@
-# CDJava
-ProJect CuoiKy CDWeb
