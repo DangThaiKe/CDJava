@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet" type="text/css" />
 <title>Insert title here</title>
 </head>
 <body>
