@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
-h1 {
-	color: red;
+.slider {
+	margin-top: var(--height-header);
+	height: 1000px;
 }
