@@ -4,8 +4,7 @@ footer {
 	display: flex;
 	flex-direction: row;
 	margin-top: 30px;
-	height: 80vh;
-	width: 200vh;
+	padding-bottom: 30px;
 	border: 15px solid var(- -back-color);
 	font-size: 1.6rem
 }
