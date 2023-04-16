@@ -93,7 +93,8 @@
 				$("#confirm-pass").css("border", "1px solid #04f414")
 				$(".eye-signup-confirm").css("color", "#04f414")
 			}
-			if(confirmPass !== pass && confirmPass.length >= 1) {
+			if(confirmPass !== pass && confirmPass.length >= 1 || 
+					confirmPass.length < 6 && confirmPass === pass) {
 				$(".confirm-pass-error--signup").text("Mật khẩu không trùng khớp")
 				$("#confirm-pass").css("border", "1px solid red")
 				$(".eye-signup-confirm").css("color", "red")
