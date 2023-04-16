@@ -3,7 +3,7 @@
 	
 <footer>
 		<div id="footer_company">
-			<img src="${pageContext.request.contextPath}/image/logo1.png" class="logo-footer" alt="logo">
+			<img src="/images/logo1.png" class="logo-footer" alt="logo">
 			<div id="footer_company-title">
 				<h4 class="footer_title">WebSite Đồng Hồ Cao Cấp Thương Hiệu KK</h4>
 				<p>KK Là Tổng Công Ty Hàng Đầu Chuyên Cung Cấp Về Các Loại Đồng
@@ -43,7 +43,7 @@
 		<div id="footer-care">
 			<h4 class="footer_title">HỖ TRỢ</h4>
 			<div id="relate">
-				<img src="${pageContext.request.contextPath}/image/contact.png" class="headset-img" alt="headset">
+				<img src="/images/contact.png" class="headset-img" alt="headset">
 
 				<div>
 					<p>Liên hệ Hotline: 7:00 – 20:00</p>
@@ -58,7 +58,7 @@
 					class="bi bi-snapchat"></i> <i class="bi bi-twitter"></i>
 			</div>
 			<div id="goverment">
-				<img src="${pageContext.request.contextPath}/image/pay.png" class="goverment-img">
+				<img src="/images/pay.png" class="goverment-img">
 			</div>
 		</div>
 	</footer>
