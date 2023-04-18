@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
-<footer>
+<footer class="show-scroll">
 		<div id="footer_company">
 			<img src="/images/logo1.png" class="logo-footer" alt="logo">
 			<div id="footer_company-title">
