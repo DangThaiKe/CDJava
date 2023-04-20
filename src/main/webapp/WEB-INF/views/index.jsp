@@ -273,7 +273,6 @@
 <script>
 	//Lấy ra danh sách các phần tử trong trang web mà muốn hiển thị sau khi scroll qua
 	const elementsToShow = document.querySelectorAll(".show-scroll");
-	console.log(elementsToShow)
 	// Lắng nghe sự kiện scroll trên trang web
 	window.addEventListener('scroll', function() {
   		// Lấy vị trí hiện tại của scroll
