@@ -80,22 +80,22 @@
 		<!-- Product List -->
 		<div class="container cate-product-list">
   			<div class="row">
-    			<div class="col-3 px-1 py-2">
+    			<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-1 py-2">
       				<jsp:include page="product-item.jsp"></jsp:include>
     			</div>
-    			<div class="col-3 px-1 py-2">
+    			<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-1 py-2">
       				<jsp:include page="product-item.jsp"></jsp:include>
     			</div> 
-    			<div class="col-3 px-1 py-2">
+    			<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-1 py-2">
       				<jsp:include page="product-item.jsp"></jsp:include>
     			</div> 
-    			<div class="col-3 px-1 py-2">
+    			<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-1 py-2">
       				<jsp:include page="product-item.jsp"></jsp:include>
     			</div> 
-    			<div class="col-3 px-1 py-2">
+    			<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-1 py-2">
       				<jsp:include page="product-item.jsp"></jsp:include>
     			</div> 
-    			<div class="col-3 px-1 py-2">
+    			<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-1 py-2">
       				<jsp:include page="product-item.jsp"></jsp:include>
     			</div>  
   			</div>

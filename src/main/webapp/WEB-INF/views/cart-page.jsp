@@ -36,7 +36,7 @@
 			
 			<div class="container" style="margin-top: 20px; padding: 0;">
   				<div class="row">
-    				<div class="col-7">
+    				<div class="col-lg-7 col-md-12 col-sm-12 col-12">
       					<div class="shop-cart-item">
       						<a href="#">
       							<img alt="shop-cart-item--img" src="https://cdn.shopify.com/s/files/1/0719/3244/4977/products/g1c0weypw58r7hyiyel1.png?v=1680023635&width=300">
@@ -90,7 +90,7 @@
       						</div>
       					</div>
     				</div>
-    				<div class="col-5 px-5">
+    				<div class="col-lg-5 col-md-12 col-sm-12 col-12 px-5">
       					<div class="cart-summer">
       						<div class="cart-total">
       							<span>Tổng phụ:</span>

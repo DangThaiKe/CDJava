@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+#cart {
+	overflow: hidden;
+}
+
 .shop-cart {
 	max-width: var(--width-website);
 	margin: var(--height-header) auto 0;
@@ -147,7 +151,27 @@
     margin-top: 16px;
 }
 
+/*
+	Responsive
+*/
 
+/* Mobile & Tablet */
+@media (max-width: 1023px) {
+	.shop-cart h1 {
+		padding: 0 20px;
+	}
+}
+
+/*  tablet */
+@media (min-width: 740px) and (max-width: 1023px) {
+	
+	
+}
+
+/* Mobile */
+@media (max-width: 739px) {
+	
+}
 
 
 

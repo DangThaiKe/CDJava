@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+#category {
+	overflow: hidden;
+}
 /*   
 	sub-slide
 */
@@ -130,7 +133,32 @@
 	transform: translateY(0);
 }
 
+/*
+	Responsive
+*/
 
+/* Mobile & Tablet */
+@media (max-width: 1023px) {
+}
+
+/*  tablet */
+@media (min-width: 740px) and (max-width: 1023px) {
+	.filter {
+		padding: 0 85px;
+	}
+	
+}
+
+/* Mobile */
+@media (max-width: 739px) {
+	.heading {
+		margin-top: calc(var(--height-header) + 38px);
+	}
+	
+	.filter {
+		padding: 0 50px;
+	}
+}
 
 
 

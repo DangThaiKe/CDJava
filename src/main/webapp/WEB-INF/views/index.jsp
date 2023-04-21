@@ -42,6 +42,26 @@
 			autoplaySpeed: 2000,
 			arrows: false,
 			infinite: false,
+			responsive: [
+			    {
+			      breakpoint: 992,
+			      settings: {
+			        slidesToShow: 3
+			      }
+			    },
+			    {
+			      breakpoint: 768,
+			      settings: {
+			        slidesToShow: 2
+			      }
+			    },
+			    {
+			      breakpoint: 576,
+			      settings: {
+			        slidesToShow: 1
+			      }
+			    }
+			  ]
 		}
 		 $(".slide-show").slick(slickOptions);
 		
@@ -136,25 +156,25 @@
 			
 			<div class="product-new--container container">
 				 <div class="row slide-show">
-    				<div class="col-3"> 
+    				<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-2"> 
     					<jsp:include page="product-item.jsp"></jsp:include>
     				</div>
-    				<div class="col-3"> 
+    				<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-2"> 
     					<jsp:include page="product-item.jsp"></jsp:include>
     				</div>
-    				<div class="col-3"> 
+    				<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-2"> 
     					<jsp:include page="product-item.jsp"></jsp:include>
     				</div>
-    				<div class="col-3"> 
+    				<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-2"> 
     					<jsp:include page="product-item.jsp"></jsp:include>
     				</div>
-    				<div class="col-3"> 
+    				<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-2"> 
     					<jsp:include page="product-item.jsp"></jsp:include>
     				</div>
-    				<div class="col-3"> 
+    				<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-2"> 
     					<jsp:include page="product-item.jsp"></jsp:include>
     				</div>
-    				<div class="col-3"> 
+    				<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-2"> 
     					<jsp:include page="product-item.jsp"></jsp:include>
     				</div>
   				</div>
@@ -163,9 +183,9 @@
 		
 		<!-- Look for her - him -->
 		<div class="look-for show-scroll">
-			<div class="container" style="padding: 0 16px">
+			<div class="container look-for-container">
   				<div class="row">
-    				<div class="col-6">
+    				<div class="col-12 col-md-12 col-lg-12 col-xl-6 py-2">
 	    				<a href="#" class="look-for--item">
 		      				<img 
 		      					alt="look for her" 
@@ -174,7 +194,7 @@
 		      				<button>Sản phẩm nữ</button>
 	    				</a>
     				</div>
-    				<div class="col-6">
+    				<div class="col-12 col-md-12 col-lg-12 col-xl-6 py-2">
     					<a href="#" class="look-for--item">
 	      					<img 
 	      						alt="look for her" 
@@ -194,22 +214,22 @@
 			<p>Lấy cảm hứng từ cộng đồng của chúng tôi</p>
 			<div class="container" style="padding: 0">
   				<div class="row">
-    				<div class="col-3">
+    				<div class="col-12 col-md-6 col-lg-6 col-xl-3 py-2">
       					<a href="#" class="daniel-item">
       						<img alt="daniel-img" src="https://cdn.shopify.com/s/files/1/0719/3244/4977/files/Mutyamasayu.jpg?v=1676971092">
       					</a> 
     				</div>
-    				<div class="col-3">
+    				<div class="col-12 col-md-6 col-lg-6 col-xl-3 py-2">
       					<a href="#" class="daniel-item">
       						<img alt="daniel-img" src="https://cdn.shopify.com/s/files/1/0719/3244/4977/files/tostos_c1b661f6-f53b-43c3-90f7-5236204d282d.jpg?v=1679490521">
       					</a> 
     				</div>
-    				<div class="col-3">
+    				<div class="col-12 col-md-6 col-lg-6 col-xl-3 py-2">
       					<a href="#" class="daniel-item">
       						<img alt="daniel-img" src="https://cdn.shopify.com/s/files/1/0719/3244/4977/files/theiboblondie_bf4c2dc7-6fb6-491f-9920-85305a8eab0c.jpg?v=1679490560">
       					</a> 
     				</div>
-    				<div class="col-3">
+    				<div class="col-12 col-md-6 col-lg-6 col-xl-3 py-2">
       					<a href="#" class="daniel-item">
       						<img alt="daniel-img" src="https://cdn.shopify.com/s/files/1/0719/3244/4977/files/taca.o3o.jpg?v=1679490600">
       					</a> 
