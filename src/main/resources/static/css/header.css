@@ -451,7 +451,74 @@
 	color: var(--white-color);
 }
 
+.logo-mobile {
+	display: none;
+}
 
+/*
+	Responsive
+*/
+
+/* Mobile & Tablet */
+@media (max-width: 1023px) {
+	.bottom-header {
+		display: none;
+	}
+}
+
+/*  tablet */
+@media (min-width: 740px) and (max-width: 1023px) {
+	
+}
+
+/* Mobile */
+@media (max-width: 739px) {
+	.logo-icon {
+		display: none;
+	}
+	
+	.logo-mobile {
+		display: block;
+		font-size: 2rem;
+    	text-decoration: none;
+    	color: var(--white-color);
+    	text-align: center;
+	}
+	
+	.logo-mobile:hover {
+		color: var(--white-color);
+	}
+	
+	.slider-body h1 {
+		    font-size: 2rem;
+	}
+	
+	.slider-body button {
+		padding: 8px 30px;
+    	font-size: 1.4rem;
+	}
+	
+	.sub-slide {
+		display: none;
+	}
+	
+	.shopify {
+		padding: 24px 20px;
+	}
+	
+	.shopify-body h5 {
+		font-size: 1.2rem;
+	}
+	
+	.shopify-body button {
+		padding: 8px 14px;
+    	font-size: 1.2rem;
+	}
+	
+	.product-new--header {
+		padding: 0 20px;
+	}
+}
 
 
 

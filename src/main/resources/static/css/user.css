@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+#user {
+	overflow: hidden;
+}
+
 .user-container {
 	max-width: var(--width-website);
 	min-height: 560px;
@@ -87,7 +91,27 @@
     margin-top: 50px;
 }
 
+/*
+	Responsive
+*/
 
+/* Mobile & Tablet */
+@media (max-width: 1023px) {
+	.shop-cart h1 {
+		padding: 0 20px;
+	}
+}
+
+/*  tablet */
+@media (min-width: 740px) and (max-width: 1023px) {
+	
+	
+}
+
+/* Mobile */
+@media (max-width: 739px) {
+	
+}
 
 
 

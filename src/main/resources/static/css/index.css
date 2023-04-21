@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+#main {
+	overflow: hidden;	
+}
+
 .slider {
 	margin-top: var(--height-header);
 	position: relative;
@@ -136,6 +140,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	width: 100%;
 }
 
 .product-new--header h3 {
@@ -169,8 +174,13 @@
 /*
 	look for
 */
+
 .look-for {
 	margin-bottom: 40px;	
+}
+
+.look-for-container {
+	padding: 0 20px !important;
 }
 
 .look-for--item {
@@ -334,5 +344,39 @@
 	font-weight: 300;
 }
 
+/*
+	Responsive
+*/
 
+/* Mobile & Tablet */
+@media (max-width: 1023px) {
+	.look-for-container {
+		padding: 0 !important;
+	}
+}
+
+/*  tablet */
+@media (min-width: 740px) and (max-width: 1023px) {
+	.slider-body h1 {
+		font-size: 4rem;
+	}
+	
+	.shopify {
+		padding: 24px 20px;
+	}
+	
+	.product-new--header {
+		padding: 0 26px;
+	}
+	
+	.daniel-well h2,
+	.daniel-well p {
+		padding: 0 50px;
+	}
+}
+
+/* Mobile */
+@media (max-width: 739px) {
+	
+}
 
