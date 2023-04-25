@@ -1,2 +1,0 @@
-# CDWEB
-ProJect CuoiKy
