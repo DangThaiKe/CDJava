@@ -22,7 +22,7 @@ create table Users (
 	userID int NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	firstName nvarchar(20),
 	lastName nvarchar(20),
-	email nvarchar(30) NOT NULL,
+	email nvarchar(30) UNIQUE NOT NULL,
 	[password] nvarchar(30) NOT NULL,
 	[address] nvarchar(30) NOT NULL,
 	phone nvarchar(20),
@@ -36,6 +36,7 @@ insert into Users values
 
 select * from Users
 drop table Users
+delete from Users
 
 /* ----------------------------- */
 /* ----------------------------- */
