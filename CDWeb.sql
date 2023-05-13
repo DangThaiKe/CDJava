@@ -20,19 +20,19 @@ select * from Category
 /* ----------------------------- */
 create table Users (
 	userID int NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	firstName nvarchar(20),
-	lastName nvarchar(20),
 	email nvarchar(30) UNIQUE NOT NULL,
+	first_name nvarchar(20) NOT NULL,
+	last_name nvarchar(20) NOT NULL,
 	[password] nvarchar(30) NOT NULL,
-	[address] nvarchar(30) NOT NULL,
-	phone nvarchar(20),
-	avatar nvarchar(255))
+	[address] nvarchar(30) NULL,
+	phone nvarchar(20) NULL,
+	avatar nvarchar(255) NOT NULL)
 
 insert into Users values 
-(N'Le', N'Minh', N'leminh23@gmail.com', N'12839488', N'237 Nguyễn Huệ', N'0293847222', N'https://i.pinimg.com/236x/17/1d/5e/171d5e22b3ea5f1a6659ba10a848bb4b.jpg'),
-(N'Pham', N'Hoa', N'phamhoa2@gmail.com', N'1278293223', N'29 Hồ Chí Minh', N'0923846373', N'https://i.pinimg.com/236x/4a/15/cb/4a15cb06824d2a89e17086ee7d2eb494.jpg'),
-(N'Tran', N'Ngan', N'tranngan89@gmail.com', N'12111212', N'25 Phạm Tuân', N'0982737466', N'https://i.pinimg.com/236x/96/51/81/965181b77ccd3d9ed60d28b57e3de318.jpg'),
-(N'Nguyen', N'Nam', N'nguyennam21@gmail.com', N'1909902D', N'887 Phạm Văn Đồng', N'0988732222', N'https://i.pinimg.com/236x/b3/ee/3c/b3ee3c993156c620f240ac15fd456d31.jpg')
+(N'leminh23@gmail.com', N'Le', N'Minh' , N'12839488', N'237 Nguyễn Huệ', N'0293847222', N'https://i.pinimg.com/236x/17/1d/5e/171d5e22b3ea5f1a6659ba10a848bb4b.jpg'),
+(N'phamhoa2@gmail.com', N'Pham', N'Hoa', N'1278293223', N'29 Hồ Chí Minh', N'0923846373', N'https://i.pinimg.com/236x/4a/15/cb/4a15cb06824d2a89e17086ee7d2eb494.jpg'),
+(N'tranngan89@gmail.com', N'Tran',  N'Ngan', N'12111212', N'25 Phạm Tuân', N'0982737466', N'https://i.pinimg.com/236x/96/51/81/965181b77ccd3d9ed60d28b57e3de318.jpg'),
+(N'nguyennam21@gmail.com', N'Nguyen', N'Nam', N'1909902D', N'887 Phạm Văn Đồng', N'0988732222', N'https://i.pinimg.com/236x/b3/ee/3c/b3ee3c993156c620f240ac15fd456d31.jpg')
 
 select * from Users
 drop table Users
@@ -54,6 +54,7 @@ insert into Orders values
 ('2021/8/6', N'11 Nam Cung', N'hoàn thành', 3)
 
 select * from Orders
+drop table Orders
 
 /* ----------------------------- */
 /* ----------------------------- */

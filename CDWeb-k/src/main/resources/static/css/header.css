@@ -12,6 +12,10 @@
 	box-shadow: 0 0 20px #0000001a;
 }
 
+.logo-mobile {
+	display: none;
+}
+
 .contaienr {
 	height: 100%;
 	color: var(--white-color);
@@ -265,6 +269,7 @@
 .modal-usered ul li a {
 	text-decoration: none;
 	font-size: 1.6rem;
+	font-weight: 300;
 	color: var(--black-color);
 	display: block;
 	padding: 8px 12px;
@@ -451,7 +456,61 @@
 	color: var(--white-color);
 }
 
+/* Mobile & Tablet */
+@media (max-width: 1023px) {
+	.bottom-header {
+		display: none;
+	}
+}
 
+/* Mobile */
+@media (max-width: 739px) {
+	.logo-icon {
+		display: none;
+	}
+
+	.logo-mobile {
+		display: block;
+		font-size: 2rem;
+    	text-decoration: none;
+    	color: var(--white-color);
+    	text-align: center;
+	}
+
+	.logo-mobile:hover {
+		color: var(--white-color);
+	}
+
+	.slider-body h1 {
+		    font-size: 2rem;
+	}
+
+	.slider-body button {
+		padding: 8px 30px;
+    	font-size: 1.4rem;
+	}
+
+	.sub-slide {
+		display: none;
+	}
+
+	.shopify {
+		padding: 24px 20px;
+	}
+
+	.shopify-body h5 {
+		font-size: 1.2rem;
+	}
+
+	.shopify-body button {
+		padding: 8px 14px;
+    	font-size: 1.2rem;
+	}
+
+	.product-new--header {
+		padding: 0 20px;
+	}
+}
 
 
 
