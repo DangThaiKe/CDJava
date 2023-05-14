@@ -3,7 +3,7 @@ use CDWeb
 
 create table Category( 
 	cateID int not null,
-	cateName nvarchar(20) not null,
+	cate_name nvarchar(20) not null,
 	primary key (cateID))
 
 insert into Category values
@@ -15,6 +15,8 @@ insert into Category values
 (6, N'Phụ kiện đồng hồ')
 
 select * from Category
+
+drop table Category
 
 /* ----------------------------- */
 /* ----------------------------- */
@@ -60,7 +62,7 @@ drop table Orders
 /* ----------------------------- */
 create table Products(
 	productID int NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	productName nvarchar(50) NOT NULL,
+	product_name nvarchar(50) NOT NULL,
 	[image] nvarchar(512) NOT NULL,
 	price money NOT NULL,
 	[description] nvarchar(255) NOT NULL,
@@ -68,6 +70,7 @@ create table Products(
 	cateID int NOT NULL,
 	CONSTRAINT FK_Products_Category FOREIGN KEY (cateID) REFERENCES Category(cateID))
 	
+drop table Products
 /* ----------------------------- */
 
 insert into Products values 

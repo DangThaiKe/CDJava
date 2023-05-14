@@ -5,13 +5,13 @@
 	<a href="#" class="product-item">
 	    <img 
 	    	alt="product-img" 
-	    	src="https://cdn.shopify.com/s/files/1/0719/3244/4977/products/mwdyzzepnza4hqeubzwu.png?v=1680023628"
+	    	src="${product.image}"
 	    >
 	    <span class="rose-gold">rose gold</span>
 	    <div class="product-item-body">
-	      	<h4>Đồng hồ cao cấp</h4>
+	      	<h4>${product.productName}</h4>
 	      	<span></span>
-	      	<p>2320000 VNĐ</p>
+	      	<p>${product.price} VNĐ</p>
 	    </div>
 	</a>
 	<button class="product-item--wishlist"></button>
