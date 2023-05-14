@@ -32,13 +32,13 @@ public class HomeController {
 		return "index";
 	}
 	
-	@GetMapping("/product")
-	public String produc() {
-		return "product-details";
-	}
-	
-	@GetMapping("/checkout")
-	public String checkout() {
-		return "checkout";
-	}
+//	@GetMapping("/product")
+//	public String produc() {
+//		return "product-details";
+//	}
+//	
+//	@GetMapping("/checkout")
+//	public String checkout() {
+//		return "checkout";
+//	}
 }

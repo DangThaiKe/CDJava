@@ -62,6 +62,11 @@
 	font-weight: 300;
 	text-transform: uppercase;
 	color: var(--black-color);
+	display: -webkit-box;
+    overflow: hidden;
+    height: 20px;
+    -webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
 }
 
 .product-item-body span {
