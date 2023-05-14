@@ -11,7 +11,7 @@
 	    <div class="product-item-body">
 	      	<h4>${product.productName}</h4>
 	      	<span></span>
-	      	<p>${product.price} VNĐ</p>
+	      	<p>${product.getPriceFormat()} VNĐ</p>
 	    </div>
 	</a>
 	<button class="product-item--wishlist"></button>

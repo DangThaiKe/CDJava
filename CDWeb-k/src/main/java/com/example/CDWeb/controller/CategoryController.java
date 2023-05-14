@@ -15,13 +15,5 @@ public class CategoryController {
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
-
-	@GetMapping("/category")
-	public String showCatePage(Model model) {
-		List<Category> categorys = categoryRepository.findAll();
-		model.addAttribute("categorys", categorys);
-		
-		return "category";
-	}
 	
 }
