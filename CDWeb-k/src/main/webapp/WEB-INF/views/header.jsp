@@ -38,26 +38,13 @@
   					</div>
   					<div class="offcanvas-body cate-body">
   						<ul>
-							<li>
-								<a href="">Đồng hồ nam</a>
-							</li>
-							<li>
-								<a href="">Đồng hồ nữ</a>
-							</li>
-							<li>
-								<a href="">Đồng hồ chống nước</a>
-							</li>
-							<li>
-								<a href="">Đồng hồ thể thao</a>
-							</li>
-							<li>
-								<a href="">Đồng hồ thông minh</a>
-							</li>
-							<li>
-								<a href="">Phụ kiện đồng hồ</a>
-							</li>
+  							<c:forEach items="${categorys}" var="category">
+								<li>
+									<a href="">${category.cateName}</a>
+								</li>
+  							</c:forEach>
 						</ul>
-  						</div>
+  					</div>
 				</div>
 				<!-- Categorys -->
 					
@@ -176,24 +163,11 @@
 			
 		<div class="bottom-header">
 				<ul>
-					<li>
-						<a href="">Đồng hồ nam</a>
-					</li>
-					<li>
-						<a href="">Đồng hồ nữ</a>
-					</li>
-					<li>
-						<a href="">Đồng hồ chống nước</a>
-					</li>
-					<li>
-						<a href="">Đồng hồ thể thao</a>
-					</li>
-					<li>
-						<a href="">Đồng hồ thông minh</a>
-					</li>
-					<li>
-						<a href="">Phụ kiện đồng hồ</a>
-					</li>
+					<c:forEach items="${categorys}" var="category">
+						<li>
+							<a href="">${category.cateName}</a>
+						</li>
+  					</c:forEach>
 				</ul>
 			</div>
 	</div>
