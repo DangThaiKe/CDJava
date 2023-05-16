@@ -62,27 +62,27 @@
 			</div>
 		</div>
 		
-		<h1 class="heading">Danh mục sản phẩm</h1>
+		<h1 class="heading">${category.cateName}</h1>
 		
 		<!-- Filter -->
 		<div class="filter">
-			<div class="filter-right"> 			
-				<select>
-					<option value="">Mặc định</option>
-					<option value="">Giá từ thấp đến cao</option>
-					<option value="">Giá từ cao đến thấp</option>
-					<option value="">Theo thứ tự bảng chữ cái, A->Z</option>
-					<option value="">Theo thứ tự bảng chữ cái, Z->A</option>
-				</select>
+			<div class="filter-right"> 		
+				<select id="sort-by" name="sortBy">
+					<option value="default">Mặc định</option>
+					<option value="priceAsc">Giá từ thấp đến cao</option>
+					<option value="priceDesc">Giá từ cao đến thấp</option>
+					<option value="nameAsc">Theo thứ tự bảng chữ cái, A->Z</option>
+					<option value="nameDesc">Theo thứ tự bảng chữ cái, Z->A</option>
+				</select> 
 				<i class="bi bi-filter"></i>
 			</div>
-		</div>
+		</div> 
 		
 		<!-- Product List -->
 		<div class="container cate-product-list">
-  			<div class="row">
+  			<div class="row" id="product-list-sort">
   				<c:forEach items="${products}" var="product">
-	    			<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-1 py-2">
+	    			<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-1 py-2 sort-by">
 	      				<div class="product">
 							<a href="#" class="product-item">
 							    <img 
@@ -142,13 +142,13 @@
 
 <script>
 	//Lấy ra danh sách các phần tử trong trang web mà muốn hiển thị sau khi scroll qua
-	const elementsToShow = document.querySelectorAll(".show-scroll");
+	const elementsToShows = document.querySelectorAll(".show-scroll");
 	// Lắng nghe sự kiện scroll trên trang web
 	window.addEventListener('scroll', function() {
   		// Lấy vị trí hiện tại của scroll
   		const currentScrollPos = window.pageYOffset;
   		// Duyệt qua danh sách các phần tử muốn hiển thị
-  		elementsToShow.forEach(function(element) {
+  		elementsToShows.forEach(function(element) {
     		// Nếu vị trí của scrollY vượt qua vị trí offsetTop của phần tử đó
     		if (currentScrollPos > element.offsetTop - 500) {
       			// Thêm lớp hiện ra vào phần tử đó để hiển thị nó
@@ -156,6 +156,38 @@
     		}
   		});
 	});
+	
+	
+	// Sort By Product In Category page
+	$(document).ready(function() {
+		$("#sort-by").change(function() {
+			var sortOption = $(this).children("option:selected").val();
+			var cateID = ${cateID};
+			
+			$.get('/list/category/' + cateID, { sortOption: sortOption }, function(data) {
+				$("#product-list-sort").empty();
+				
+				$.each(data, function(index, product) {
+					$("#product-list-sort").append(
+							"<div class='col-lg-3 col-md-4 col-sm-6 col-12 px-1 py-2 sort-by'>" +
+			      				"<div class='product'>" +
+									"<a href='#' class='product-item'>" +
+									    "<img alt='product-img' src=" + product.image + ">" +
+									    "<span class='rose-gold'>rose gold</span>" +
+									    "<div class='product-item-body'>" +
+									      	"<h4>" + product.productName + "</h4>" +
+									      	"<span></span>" +
+									      	"<p>" + product.priceFormat + " VNĐ</p>" +
+									    "</div>" +
+									"</a>" +
+									"<button class='product-item--wishlist'></button>" +
+								"</div>" + 
+			    			"</div>");
+				})
+			})
+		})
+	})
+	
 </script>
 	
 </body>

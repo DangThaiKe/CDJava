@@ -71,6 +71,9 @@ create table Products(
 	CONSTRAINT FK_Products_Category FOREIGN KEY (cateID) REFERENCES Category(cateID))
 	
 drop table Products
+
+SELECT * FROM Products where cateID = 1 ORDER BY price ASC
+SELECT cate_name FROM Category WHERE cateID = 1
 /* ----------------------------- */
 
 insert into Products values 
@@ -158,8 +161,6 @@ insert into Products values
 
 
 select * from Products
-
-
 
 
 
