@@ -1,8 +1,5 @@
 package com.example.CDWeb.model;
 
-import java.text.NumberFormat;
-import java.util.Locale;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
