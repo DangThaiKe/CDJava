@@ -73,20 +73,21 @@ CREATE TABLE orders_detail (
 	productid int NOT NULL,
 	quantity int NOT NULL,
 	tongtien money NOT NULL,
+	payment_method nvarchar(50) NOT NULL,
 	CONSTRAINT FK_orders_detail_orderid FOREIGN KEY (orderid) REFERENCES orders (orderid),
 	CONSTRAINT FK_orders_detail_productid FOREIGN KEY (productid) REFERENCES products (productid))
 
 drop table orders_detail
 
 INSERT INTO orders_detail VALUES 
-(4, 3, 3, $400.00),
-(5, 8, 2, $340.00),
-(4, 6, 5, $390.00),
-(6, 5, 2, $230.00),
-(6, 8, 1, $350.00),
-(8, 1, 2, $300.00)
+(4, 3, 3, $400.00, N'Thanh toán bằng thẻ tín dụng/thẻ ghi nợ'),
+(5, 8, 2, $340.00, N'Thanh toán khi nhận hàng'),
+(4, 6, 5, $390.00, N'Thanh toán bằng thẻ tín dụng/thẻ ghi nợ'),
+(6, 5, 2, $230.00, N'Thanh toán khi nhận hàng'),
+(6, 8, 1, $350.00, N'Thanh toán bằng thẻ tín dụng/thẻ ghi nợ'),
+(8, 1, 2, $300.00, N'Thanh toán khi nhận hàng')
 
-select orders.orderid, users.email, deliveryAddress, purchaseDate, products.product_name, quantity, tongtien
+select orders.orderid, users.email, deliveryAddress, purchaseDate, products.product_name, quantity, tongtien, payment_method
 from orders, orders_detail, users, products
 where orders.orderid = orders_detail.orderid and orders.userid = users.userid and 
 orders_detail.productid = products.productid and orders.orderid = 5
