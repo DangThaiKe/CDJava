@@ -1,12 +1,12 @@
 ﻿create database CDWeb
 use CDWeb
 
-create table Category( 
-	cateID int not null,
+CREATE TABLE category( 
+	cateid int not null,
 	cate_name nvarchar(20) not null,
-	primary key (cateID))
+	primary key (cateid))
 
-insert into Category values
+INSERT INTO category VALUES
 (1, N'Đồng hồ nam'),
 (2, N'Đồng hồ nữ'),
 (3, N'Đồng hồ chống nước'),
@@ -20,55 +20,89 @@ drop table Category
 
 /* ----------------------------- */
 /* ----------------------------- */
-create table Users (
-	userID int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+CREATE TABLE users (
+	userid int NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	email nvarchar(30) UNIQUE NOT NULL,
 	first_name nvarchar(20) NOT NULL,
 	last_name nvarchar(20) NOT NULL,
 	[password] nvarchar(30) NOT NULL,
 	[address] nvarchar(30) NULL,
 	phone nvarchar(20) NULL,
-	avatar nvarchar(255) NOT NULL)
+	avatar nvarchar(255) NULL)
 
-insert into Users values 
+INSERT INTO users VALUES 
 (N'leminh23@gmail.com', N'Le', N'Minh' , N'12839488', N'237 Nguyễn Huệ', N'0293847222', N'https://i.pinimg.com/236x/17/1d/5e/171d5e22b3ea5f1a6659ba10a848bb4b.jpg'),
 (N'phamhoa2@gmail.com', N'Pham', N'Hoa', N'1278293223', N'29 Hồ Chí Minh', N'0923846373', N'https://i.pinimg.com/236x/4a/15/cb/4a15cb06824d2a89e17086ee7d2eb494.jpg'),
 (N'tranngan89@gmail.com', N'Tran',  N'Ngan', N'12111212', N'25 Phạm Tuân', N'0982737466', N'https://i.pinimg.com/236x/96/51/81/965181b77ccd3d9ed60d28b57e3de318.jpg'),
 (N'nguyennam21@gmail.com', N'Nguyen', N'Nam', N'1909902D', N'887 Phạm Văn Đồng', N'0988732222', N'https://i.pinimg.com/236x/b3/ee/3c/b3ee3c993156c620f240ac15fd456d31.jpg')
 
-select * from Users
-drop table Users
-delete from Users
+select * from users
+drop table users
+delete from users where userID = 7
+
+UPDATE users
+SET [password] = 121212
+WHERE email = 'bot30@gmail.com';
 
 /* ----------------------------- */
 /* ----------------------------- */
-CREATE TABLE Orders (
-	orderID int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+CREATE TABLE orders (
+	orderid int NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	purchaseDate date NOT NULL,
 	deliveryAddress nvarchar(50) NOT NULL,
 	orderStatus nvarchar(20) NOT NULL,
-	userID int NOT NULL,
-	CONSTRAINT FK_Orders_User FOREIGN KEY (userID) REFERENCES Users(userID))
+	userid int NOT NULL,
+	CONSTRAINT FK_Orders_userid FOREIGN KEY (userid) REFERENCES users(userid))
 
-insert into Orders values 
-('2022/3/23', N'88 Hai Ba Trung', N'hoàn thành', 1),
-('2023/6/12', N'27 Dien Bien Phu', N'đang giao', 2),
-('2021/8/6', N'11 Nam Cung', N'hoàn thành', 3)
+INSERT INTO orders VALUES 
+('2022/3/23', N'88 Hai Ba Trung', N'Hoàn thành', 1),
+('2023/6/12', N'27 Dien Bien Phu', N'Đang giao', 2),
+('2021/8/3', N'11 Nam Cung', N'Hoàn thành', 3),
+('2021/2/6', N'29 Nguyễn Huệ', N'Chờ thanh toán', 5),
+('2021/5/7', N'11 Nam Cung', N'Hoàn thành', 5),
+('2021/8/6', N'11 Nam Cung', N'Vận chuyển', 5),
+('2021/8/6', N'29 Nguyễn Huệ', N'Hoàn thành', 5),
+('2021/8/6', N'11 Nam Cung', N'Đang giao', 5)
 
 select * from Orders
 drop table Orders
 
+CREATE TABLE orders_detail (
+	orders_detail_id int IDENTITY(1, 1) NOT NULL primary key,
+	orderid int NOT NULL,
+	productid int NOT NULL,
+	quantity int NOT NULL,
+	tongtien money NOT NULL,
+	CONSTRAINT FK_orders_detail_orderid FOREIGN KEY (orderid) REFERENCES orders (orderid),
+	CONSTRAINT FK_orders_detail_productid FOREIGN KEY (productid) REFERENCES products (productid))
+
+drop table orders_detail
+
+INSERT INTO orders_detail VALUES 
+(4, 3, 3, $400.00),
+(5, 8, 2, $340.00),
+(4, 6, 5, $390.00),
+(6, 5, 2, $230.00),
+(6, 8, 1, $350.00),
+(8, 1, 2, $300.00)
+
+select orders.orderid, users.email, deliveryAddress, purchaseDate, products.product_name, quantity, tongtien
+from orders, orders_detail, users, products
+where orders.orderid = orders_detail.orderid and orders.userid = users.userid and 
+orders_detail.productid = products.productid and orders.orderid = 5
+
+
 /* ----------------------------- */
 /* ----------------------------- */
-create table Products(
-	productID int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+CREATE TABLE products (
+	productid int NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	product_name nvarchar(50) NOT NULL,
 	[image] nvarchar(512) NOT NULL,
 	price money NOT NULL,
 	[description] nvarchar(255) NOT NULL,
 	discount int null,
 	cateID int NOT NULL,
-	CONSTRAINT FK_Products_Category FOREIGN KEY (cateID) REFERENCES Category(cateID))
+	CONSTRAINT FK_products_cateid FOREIGN KEY (cateid) REFERENCES category(cateid))
 	
 drop table Products
 
@@ -76,7 +110,7 @@ SELECT * FROM Products where cateID = 1 ORDER BY price ASC
 SELECT cate_name FROM Category WHERE cateID = 1
 /* ----------------------------- */
 
-insert into Products values 
+INSERT INTO products VALUES 
 (N'PETITE AMBER', N'https://cdn.shopify.com/s/files/1/0719/3244/4977/products/2613209dafe400b3b09de24b5b0c14ac910d1d9f.png?v=1679582887&width=540', $200.00, N'Đồng Hồ Nam Cao Cấp', 10, 1),
 (N'PETITE MELROSE', N'https://cdn.shopify.com/s/files/1/0719/3244/4977/products/e52b88ce20896801a51f5602a7740ee0493c0f31.png?v=1679583045&width=540', $214.00, N'Đồng Hồ Nam Cao Cấp', 10, 1),
 (N'PETITE UNITONE', N'https://cdn.shopify.com/s/files/1/0719/3244/4977/products/4a6af0fa7a79ddf0bc5eb428a88dbac204cab180.png?v=1679583214&width=540', $211.00, N'Đồng Hồ Nam Cao Cấp', 10, 1),
