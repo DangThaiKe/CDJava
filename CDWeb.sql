@@ -48,44 +48,47 @@ WHERE email = 'bot30@gmail.com';
 /* ----------------------------- */
 CREATE TABLE orders (
 	orderid int NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	purchaseDate date NOT NULL,
-	deliveryAddress nvarchar(50) NOT NULL,
-	orderStatus nvarchar(20) NOT NULL,
+	purchase_date date NOT NULL,
+	delivery_address nvarchar(50) NOT NULL,
+	order_status nvarchar(20) NOT NULL,
+	tongtien money NOT NULL,
 	userid int NOT NULL,
 	CONSTRAINT FK_Orders_userid FOREIGN KEY (userid) REFERENCES users(userid))
 
 INSERT INTO orders VALUES 
-('2022/3/23', N'88 Hai Ba Trung', N'Hoàn thành', 1),
-('2023/6/12', N'27 Dien Bien Phu', N'Đang giao', 2),
-('2021/8/3', N'11 Nam Cung', N'Hoàn thành', 3),
-('2021/2/6', N'29 Nguyễn Huệ', N'Chờ thanh toán', 5),
-('2021/5/7', N'11 Nam Cung', N'Hoàn thành', 5),
-('2021/8/6', N'11 Nam Cung', N'Vận chuyển', 5),
-('2021/8/6', N'29 Nguyễn Huệ', N'Hoàn thành', 5),
-('2021/8/6', N'11 Nam Cung', N'Đang giao', 5)
+('2021/8/3', N'11 Nam Cung', N'Hoàn thành', $400.00, 3),
+('2021/2/6', N'29 Nguyễn Huệ', N'Chờ thanh toán', $350.00, 5),
+('2021/5/7', N'11 Nam Cung', N'Hoàn thành', $340.00, 5),
+('2021/8/6', N'11 Nam Cung', N'Vận chuyển', $230.00, 5),
+('2021/8/6', N'29 Nguyễn Huệ', N'Hoàn thành', $430.00, 5),
+('2021/8/6', N'11 Nam Cung', N'Đang giao', $230.00, 5)
 
-select * from Orders
+select * from orders where userid = 5
+
 drop table Orders
 
-CREATE TABLE orders_detail (
+select * from orders where userid = 5
+
+CREATE TABLE ordersDetail (
 	orders_detail_id int IDENTITY(1, 1) NOT NULL primary key,
 	orderid int NOT NULL,
 	productid int NOT NULL,
 	quantity int NOT NULL,
-	tongtien money NOT NULL,
 	payment_method nvarchar(50) NOT NULL,
 	CONSTRAINT FK_orders_detail_orderid FOREIGN KEY (orderid) REFERENCES orders (orderid),
 	CONSTRAINT FK_orders_detail_productid FOREIGN KEY (productid) REFERENCES products (productid))
 
-drop table orders_detail
+select * from orders_detail
 
-INSERT INTO orders_detail VALUES 
-(4, 3, 3, $400.00, N'Thanh toán bằng thẻ tín dụng/thẻ ghi nợ'),
-(5, 8, 2, $340.00, N'Thanh toán khi nhận hàng'),
-(4, 6, 5, $390.00, N'Thanh toán bằng thẻ tín dụng/thẻ ghi nợ'),
-(6, 5, 2, $230.00, N'Thanh toán khi nhận hàng'),
-(6, 8, 1, $350.00, N'Thanh toán bằng thẻ tín dụng/thẻ ghi nợ'),
-(8, 1, 2, $300.00, N'Thanh toán khi nhận hàng')
+drop table ordersDetail
+
+INSERT INTO ordersDetail VALUES 
+(1, 1, 3, N'Thanh toán bằng thẻ tín dụng/thẻ ghi nợ'),
+(3, 3, 2, N'Thanh toán khi nhận hàng'),
+(4, 2, 5, N'Thanh toán bằng thẻ tín dụng/thẻ ghi nợ'),
+(6, 4, 2, N'Thanh toán khi nhận hàng'),
+(2, 5, 1, N'Thanh toán bằng thẻ tín dụng/thẻ ghi nợ'),
+(5, 6, 2, N'Thanh toán khi nhận hàng')
 
 select orders.orderid, users.email, deliveryAddress, purchaseDate, products.product_name, quantity, tongtien, payment_method
 from orders, orders_detail, users, products
