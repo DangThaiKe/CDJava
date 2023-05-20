@@ -43,8 +43,8 @@
 	})
 </script>
 	
-<form class="form-change-pass">
-	<div>
+<form action="/user-profile" method="post" class="form-change-pass">
+	<div> 
 		<label for="password">Mật khẩu mới:</label> 
 		<input type="password" id="password" name="password">
 	</div>

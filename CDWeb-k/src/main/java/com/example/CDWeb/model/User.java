@@ -1,11 +1,17 @@
 package com.example.CDWeb.model;
 
-import javax.persistence.Column;
+import java.util.List; 
+
+import javax.persistence.Column; 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "Users")
@@ -13,38 +19,41 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int userID;
+	@Column(name = "userid")
+	private int userid;
 	
 	@Column(name = "email", nullable = false, unique = true)
 	private String email;
 	
-	@Column(name = "firstName", nullable = false)
+	@Column(name = "first_name", nullable = false)
 	private String firstName;
 	
-	@Column(name = "lastName", nullable = false)
+	@Column(name = "last_name", nullable = false)
 	private String lastName;
 	
 	@Column(name = "[password]", nullable = false)
 	private String password;
 	
-	@Column(name = "[address]", nullable = true)
+	@Column(name = "[address]")
 	private String address;
 	
-	@Column(name = "phone", nullable = true)
+	@Column(name = "phone")
 	private String phone;
 	
-	@Column(name = "avatar", nullable = false)
-	private String avatar;
+	@Column(name = "avatar")
+	private byte[] avatar;
 	
-
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	private List<Orders> orders;
+	
 	public User() {
 		super();
 	}
 
-	public User(int userID, String email, String firstName, String lastName, String password, String address,
-			String phone, String avatar) {
+	public User(int userid, String email, String firstName, String lastName, String password, String address,
+			String phone, byte[] avatar) {
 		super();
-		this.userID = userID;
+		this.userid = userid;
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -54,12 +63,12 @@ public class User {
 		this.avatar = avatar;
 	}
 
-	public int getUserID() {
-		return userID;
+	public int getUserid() {
+		return userid;
 	}
 
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 
 	public String getFirstName() {
@@ -110,12 +119,16 @@ public class User {
 		this.phone = phone;
 	}
 
-	public String getAvatar() {
+	public byte[] getAvatar() {
 		return avatar;
 	}
 
-	public void setAvatar(String avatar) {
+	public void setAvatar(byte[] avatar) {
 		this.avatar = avatar;
 	}
 
 }
+
+
+
+

@@ -63,7 +63,7 @@ INSERT INTO orders VALUES
 ('2021/8/6', N'29 Nguyễn Huệ', N'Hoàn thành', $430.00, 5),
 ('2021/8/6', N'11 Nam Cung', N'Đang giao', $230.00, 5)
 
-select * from orders where userid = 5
+select * from orders where  userid = 5 and order_status = N'Chờ thanh toán'
 
 drop table Orders
 
@@ -199,7 +199,5 @@ INSERT INTO products VALUES
 
 
 select * from Products
-
-
 
 

@@ -40,7 +40,7 @@
   						<ul>
   							<c:forEach items="${categorys}" var="category">
 								<li>
-									<a href="/category/${category.cateID}">${category.cateName}</a>
+									<a href="/category/${category.cateid}">${category.cateName}</a>
 								</li>
   							</c:forEach>
 						</ul>
@@ -84,8 +84,13 @@
 				<!-- Đã login -->
 				
 				<c:if test="${user != null}">
-					<a class="user-img">
-	   					 <img src="${user.avatar}"/>
+					<a class="user-img"> 
+						<c:if test="${user.avatar == null}">
+							<img src="https://i.pinimg.com/564x/77/c8/d4/77c8d48eccb8ae095a3c3ce24b2fce8e.jpg"/>
+						</c:if>
+						<c:if test="${user.avatar != null}">
+							<img src="${user.avatar}"/>
+						</c:if>
 	  				</a>
 				</c:if>
   				<div class="modal-usered">
@@ -165,7 +170,7 @@
 				<ul>
 					<c:forEach items="${categorys}" var="category">
 						<li>
-							<a href="/category/${category.cateID}">${category.cateName}</a>
+							<a href="/category/${category.cateid}">${category.cateName}</a>
 						</li>
   					</c:forEach>
 				</ul>

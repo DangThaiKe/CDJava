@@ -11,38 +11,38 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Category")
+@Table(name = "category")
 public class Category {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int cateID;
+	private int cateid;
 	
-	@Column(name="cateName")
+	@Column(name="cate_name")
 	private String cateName;
 	
 	// mappedBy = "category" chỉ định tên trường bên phía 
 	// @ManyToOne của @Entity Product
 	@OneToMany(mappedBy = "category")
 	private List<Product> products;
-	
+	 
 	
 	public Category() {
 		super();
 	}
 
-	public Category(int cateID, String cateName) {
+	public Category(int cateid, String cateName) {
 		super();
-		this.cateID = cateID;
+		this.cateid = cateid;
 		this.cateName = cateName;
 	}
 
-	public int getCateID() {
-		return cateID;
+	public int getCateid() {
+		return cateid;
 	}
 
-	public void setCateID(int cateID) {
-		this.cateID = cateID;
+	public void setCateid(int cateid) {
+		this.cateid = cateid;
 	}
 
 	public String getCateName() {

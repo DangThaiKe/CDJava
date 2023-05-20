@@ -1,48 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<form class="profile-form">
+<form class="profile-form" action="/update-profile" method="post">
 	<div>
 		<div class="profile-form--body">
 			<label>Họ</label> 
-			<input type="text">
+			<input type="text" name="lastName" value="${user.lastName}">
 		</div>
 		<div class="profile-form--body">
 			<label>Tên</label> 
-			<input type="text">
+			<input type="text" name="firstName" value="${user.firstName}">
 		</div>
 		<div class="profile-form--body">
 			<label>Email</label> 
-			<input type="email" value="dksj@gmail.com" readonly="readonly">
+			<input type="email" name="email" value="${user.email}" readonly="readonly">
 		</div>
 		<div class="profile-form--body">
 			<label>Số điện thoại</label> 
-			<input type="number">
+			<input type="number" name="phone" value="${user.phone}">
 		</div>
 		<div class="profile-form--body">
             <label>Địa chỉ</label> 
-            <input type="text"> 
+            <input type="text" name="address" value="${user.address}"> 
         </div>
-		<div class="profile-form--body">
-			<label>Giới tính</label>
-			<div class="radio-group">
-				<label for="nam"> 
-					<input type="radio" id="nam" name="gender" value="Nam"> 
-					Nam
-				</label> 
-				<label for="nu"> 
-					<input type="radio" id="nu" name="gender" value="Nữ"> 
-					Nữ
-				</label>
-			</div>
-		</div>
 		<input value="Cập nhật" type="submit" class="profile-form--btn">
 	</div>
 	<div style="text-align: center;">
 		<div class="profile-form--img">
-			<img alt="avatar" id="avatar" src="https://i.pinimg.com/736x/03/b3/00/03b300a50dab76493bdc4afcd0f5e415.jpg">
+			<c:if test="${user.avatar == null}">
+				<img alt="avatar" id="avatar" src="https://i.pinimg.com/564x/77/c8/d4/77c8d48eccb8ae095a3c3ce24b2fce8e.jpg"/>
+			</c:if>
+			<c:if test="${user.avatar != null}">
+				<img alt="avatar" id="avatar" src="${user.avatar}"/>
+			</c:if>
 		</div>
-		<input id="avatar-input" style="display: none;" type="file" accept=".jpg, .jpeg, .png">
+		<input id="avatar-input" name="avatar" style="display: none;" type="file" accept=".jpg, .jpeg, .png">
 		<button onclick="chooseFile()" class="profile-form--img-btn" type="button">Chọn ảnh</button>
 		<p class="dinhdang">Định dạng: .JPG, .JPEG, .PNG</p>
 	</div>

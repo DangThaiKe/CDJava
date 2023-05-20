@@ -162,9 +162,9 @@
 	$(document).ready(function() {
 		$("#sort-by").change(function() {
 			var sortOption = $(this).children("option:selected").val();
-			var cateID = ${cateID};
+			var cateid = ${cateid};
 			
-			$.get('/list/category/' + cateID, { sortOption: sortOption }, function(data) {
+			$.get('/list/category/' + cateid, { sortOption: sortOption }, function(data) {
 				$("#product-list-sort").empty();
 				
 				$.each(data, function(index, product) {

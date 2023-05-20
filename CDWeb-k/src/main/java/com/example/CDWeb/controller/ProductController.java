@@ -1,13 +1,9 @@
 package com.example.CDWeb.controller;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.ArrayList; 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,25 +25,28 @@ public class ProductController {
 	@Autowired
 	private CategoryRepository categoryRepository;
 	
-	@GetMapping("/category/{cateID}")
-	public String findByCategoryId(@PathVariable("cateID") Integer cateID, Model model) {
+	
+	// xem sản phẩm theo danh mục
+	@GetMapping("/category/{cateid}")
+	public String findByCategoryId(@PathVariable("cateid") Integer cateid, Model model) {
 		List<Category> categorys = categoryRepository.findAll();
 		model.addAttribute("categorys", categorys);
 		
-		model.addAttribute("cateID", cateID);
+		model.addAttribute("cateID", cateid);
 		
-		Category category = categoryRepository.getCategoryBycateID(cateID);
+		Category category = categoryRepository.getCategoryBycateid(cateid);
 		model.addAttribute("category", category);
 		
-		List<Product> products = productRepository.findByCategoryCateID(cateID);
+		List<Product> products = productRepository.findByCategoryCateid(cateid);
 		model.addAttribute("products", products);
 		
 		return "category";
 	}
 	
+	// lọc sản phảm trong danh mục
 	@ResponseBody
-	@GetMapping("/list/category/{cateID}")
-	public List<Product>  getProducts(@PathVariable("cateID") Integer cateID,
+	@GetMapping("/list/category/{cateid}")
+	public List<Product>  getProducts(@PathVariable("cateid") Integer cateid,
 			@RequestParam(required = false) String sortOption) {
 		
 		List<Product> products = new ArrayList<>();
@@ -55,19 +54,19 @@ public class ProductController {
 		if(sortOption != null) {
 			switch (sortOption) {
 				case "priceAsc":
-					products = productRepository.findByCategoryCateIDOrderByPriceAsc(cateID);
+					products = productRepository.findByCategoryCateidOrderByPriceAsc(cateid);
 					break;
 				case "priceDesc":
-					products = productRepository.findByCategoryCateIDOrderByPriceDesc(cateID);
+					products = productRepository.findByCategoryCateidOrderByPriceDesc(cateid);
 					break;
 				case "nameAsc":
-					products = productRepository.findByCategoryCateIDOrderByProductNameAsc(cateID);
+					products = productRepository.findByCategoryCateidOrderByProductNameAsc(cateid);
 					break;
 				case "nameDesc":
-					products = productRepository.findByCategoryCateIDOrderByProductNameDesc(cateID);
+					products = productRepository.findByCategoryCateidOrderByProductNameDesc(cateid);
 					break;
 				default:
-					products = productRepository.findByCategoryCateID(cateID);
+					products = productRepository.findByCategoryCateid(cateid);
 				}
 		}
 		return products;

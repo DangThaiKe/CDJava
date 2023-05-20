@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,8 +36,13 @@
 			 <!-- Tab items -->
         	<div class="tabs">
         		<div class="infor-user">
-        			<img alt="avatar" src="https://i.pinimg.com/736x/03/b3/00/03b300a50dab76493bdc4afcd0f5e415.jpg">
-        			<span>name</span>
+        				<c:if test="${user.avatar == null}">
+							<img alt="avatar" src="https://i.pinimg.com/564x/77/c8/d4/77c8d48eccb8ae095a3c3ce24b2fce8e.jpg"/>
+						</c:if>
+						<c:if test="${user.avatar != null}">
+							<img alt="avatar" src="${user.avatar}"/>
+						</c:if>
+        			<span>${user.lastName} ${user.firstName}</span>
         		</div>
          		 <div class="tab-item active">
             		Hồ sơ
