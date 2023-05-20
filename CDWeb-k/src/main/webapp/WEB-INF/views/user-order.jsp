@@ -1,5 +1,228 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<script>
+	$(document).ready(function() {
+		$.ajax({
+			url: "/order-user",
+			type: "GET",
+			dataType: "json",
+			success: function(data) {
+				var orderAll = $("#order-all");
+				
+				var row = "<table class='order-table'>" +
+								"<thead>" +
+								"<tr>" +
+									"<th>ID</th>" +
+									"<th>Trạng thái</th>" +
+									"<th>Ngày mua</th>" +
+									"<th>Tổng tiền</th>" +
+								"</tr>" +
+							"</thead>" +
+							"<tbody id='list-order'>" +
+								
+							"</tbody>" +
+						"</table>";
+		
+				orderAll.append(row);
+				var listOrder = $("#list-order");
+				
+				$.each(data, function(index, order) {
+					listOrder.append(
+							"<tr class='order-table-item'>" +
+								"<td>" + order.orderid + "</td>" +
+	                			"<td>" + order.orderStatus + "</td>" +
+	                			"<td>" + order.purchaseDate + "</td>" +
+								"<td>" + order.tongtien + " VNĐ</td>" +
+						"</tr>");
+				})
+			}
+		});
+		
+		// order wait
+		$.ajax({
+			url: "/order-user-wait",
+			type: "GET",
+			dataType: "json",
+			success: function(data) {
+				var orderWait = $("#order-wait");
+				
+				var rowWait = "<table class='order-table'>" +
+								"<thead>" +
+								"<tr>" +
+									"<th>ID</th>" +
+									"<th>Trạng thái</th>" +
+									"<th>Ngày mua</th>" +
+									"<th>Tổng tiền</th>" +
+								"</tr>" +
+							"</thead>" +
+							"<tbody id='list-order-wait'>" +
+								
+							"</tbody>" +
+						"</table>";
+		
+				orderWait.append(rowWait);
+				var listWait = $("#list-order-wait");
+				
+				$.each(data, function(index, order) {
+				    if(order != null) {
+				    	listWait.append(
+				            "<tr class='order-table-item'>" +
+				                "<td>" + order.orderid + "</td>" +
+				                "<td>" + order.orderStatus + "</td>" +
+				                "<td>" + order.purchaseDate + "</td>" +
+				                "<td>" + order.tongtien + " VNĐ</td>" +
+				            "</tr>");
+				    } 
+				    else {
+				        orderWait.empty();
+				        orderWait.append(
+				            "<span class='order-empty'>" + "Không có đơn hàng" + "</span>"
+				        );
+				    }
+				});
+			}
+		})
+		
+		// order Tranport
+		$.ajax({
+			url: "/order-user-transport",
+			type: "GET",
+			dataType: "json",
+			success: function(data) {
+				var orderTranport = $("#order-tranport");
+				
+				var rowTranport = "<table class='order-table'>" +
+								"<thead>" +
+								"<tr>" +
+									"<th>ID</th>" +
+									"<th>Trạng thái</th>" +
+									"<th>Ngày mua</th>" +
+									"<th>Tổng tiền</th>" +
+								"</tr>" +
+							"</thead>" +
+							"<tbody id='list-order-tranport'>" +
+								
+							"</tbody>" +
+						"</table>";
+		
+				orderTranport.append(rowTranport);
+				var listTranport = $("#list-order-tranport");
+				
+				$.each(data, function(index, order) {
+				    if(order != null) {
+				    	listTranport.append(
+				            "<tr class='order-table-item'>" +
+				                "<td>" + order.orderid + "</td>" +
+				                "<td>" + order.orderStatus + "</td>" +
+				                "<td>" + order.purchaseDate + "</td>" +
+				                "<td>" + order.tongtien + " VNĐ</td>" +
+				            "</tr>");
+				    } 
+				    else {
+				    	orderTranport.empty();
+				    	orderTranport.append(
+				            "<span class='order-empty'>" + "Không có đơn hàng" + "</span>"
+				        );
+				    }
+				});
+			}
+		})
+		
+		// order Delivering
+		$.ajax({
+			url: "/order-user-delivering",
+			type: "GET",
+			dataType: "json",
+			success: function(data) {
+				var orderDelivering = $("#order-delivering");
+				
+				var rowDelivering = "<table class='order-table'>" +
+								"<thead>" +
+								"<tr>" +
+									"<th>ID</th>" +
+									"<th>Trạng thái</th>" +
+									"<th>Ngày mua</th>" +
+									"<th>Tổng tiền</th>" +
+								"</tr>" +
+							"</thead>" +
+							"<tbody id='list-order-delivering'>" +
+								
+							"</tbody>" +
+						"</table>";
+		
+				orderDelivering.append(rowDelivering);
+				var listDelivering = $("#list-order-delivering");
+				
+				$.each(data, function(index, order) {
+				    if(order != null) {
+				    	listDelivering.append(
+				            "<tr class='order-table-item'>" +
+				                "<td>" + order.orderid + "</td>" +
+				                "<td>" + order.orderStatus + "</td>" +
+				                "<td>" + order.purchaseDate + "</td>" +
+				                "<td>" + order.tongtien + " VNĐ</td>" +
+				            "</tr>");
+				    } 
+				    else {
+				    	orderDelivering.empty();
+				    	orderDelivering.append(
+				            "<span class='order-empty'>" + "Không có đơn hàng" + "</span>"
+				        );
+				    }
+				});
+			}
+		})
+		
+		
+		// order Complete
+		$.ajax({
+			url: "/order-user-complete",
+			type: "GET",
+			dataType: "json",
+			success: function(data) {
+				var orderComplete = $("#order-complete");
+				
+				var rowComplete = "<table class='order-table'>" +
+								"<thead>" +
+								"<tr>" +
+									"<th>ID</th>" +
+									"<th>Trạng thái</th>" +
+									"<th>Ngày mua</th>" +
+									"<th>Tổng tiền</th>" +
+								"</tr>" +
+							"</thead>" +
+							"<tbody id='list-order-complete'>" +
+								
+							"</tbody>" +
+						"</table>";
+		
+				orderComplete.append(rowComplete);
+				var listComplete = $("#list-order-complete");
+				
+				$.each(data, function(index, order) {
+				    if(order != null) {
+				    	listComplete.append(
+				            "<tr class='order-table-item'>" +
+				                "<td>" + order.orderid + "</td>" +
+				                "<td>" + order.orderStatus + "</td>" +
+				                "<td>" + order.purchaseDate + "</td>" +
+				                "<td>" + order.tongtien + " VNĐ</td>" +
+				            "</tr>");
+				    } 
+				    else {
+				    	orderComplete.empty();
+				    	orderComplete.append(
+				            "<span class='order-empty'>" + "Không có đơn hàng" + "</span>"
+				        );
+				    }
+				});
+			}
+		})
+	})	
+
+</script>
 
 <div class="order-container">
 	<h2>Đơn hàng của tôi</h2>
@@ -12,124 +235,15 @@
 		<div class="line"></div>
 	</div>
 	<div class="order-pane">
-		<div class="order-pane-tab active">
-			<!-- List order -->
-			<table class="order-table">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Trạng thái</th>
-						<th>Ngày mua</th>
-						<th>Tổng tiền</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="order-table-item">
-						<td>1</td>
-						<td>Đã giao hàng</td>
-						<td>20/04/2023</td>
-						<td>500,000đ</td>
-					</tr>
-					<tr class="order-table-item">
-						<td>2</td>
-						<td>Đã giao hàng</td>
-						<td>20/04/2023</td>
-						<td>500,000đ</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div class="order-pane-tab">
-			<span class="order-empty">Không có đơn hàng</span>
-		</div>
-		<div class="order-pane-tab">
-			<span class="order-empty">Không có đơn hàng</span>
-		</div>
-		<div class="order-pane-tab">
-<!-- 			<span class="order-empty">Không có đơn hàng</span> -->
-			<!-- List order -->
-			<table class="order-table">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Trạng thái</th>
-						<th>Ngày mua</th>
-						<th>Tổng tiền</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="order-table-item">
-						<td>1</td>
-						<td>Đã giao hàng</td>
-						<td>20/04/2023</td>
-						<td>500,000đ</td>
-					</tr>
-					<tr class="order-table-item">
-						<td>2</td>
-						<td>Đã giao hàng</td>
-						<td>20/04/2023</td>
-						<td>500,000đ</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div class="order-pane-tab">
-			<span class="order-empty">Không có đơn hàng</span>
-		</div>
-	</div>
-</div>
-<div class="order-detail">
-	<div class="order-detail--header">
-		<h2>Chi tiết đơn hàng</h2>
-		<span class="order-detail--header-back">Quay lại</span>
-	</div>
-	<!-- Order detail -->
-	<div class="order-detail-container">
-		<div class="order-detail-list">
-			<div class="order-detail-list--header">
-				<span>Id: 1</span> 
-				<span>Ngày mua: 20/4/2023</span>
-			</div>
-			<div class="order-detail-item">
-				<div class="order-detail-item--left">
-					<img 
-						alt="order-detail-img"
-						src="https://cdn.shopify.com/s/files/1/0719/3244/4977/products/mwdyzzepnza4hqeubzwu.png?v=1680023628"
-					>
-					<span>Đồng hồ nam</span>
-				</div>
-				<p>2333 VNĐ x 2</p>
-			</div>
-			<div class="order-detail-item">
-				<div class="order-detail-item--left">
-					<img 
-						alt="order-detail-img"
-						src="https://cdn.shopify.com/s/files/1/0719/3244/4977/products/mwdyzzepnza4hqeubzwu.png?v=1680023628"
-					>
-					<span>Đồng hồ nữ</span>
-				</div>
-				<p>32323 VNĐ x 1</p>
-			</div>
-		</div>
-		<div class="container" style="margin-top: 20px;">
-			<div class="row">
-				<div class="col-6">
-					<div class="order-detail-address">
-						<span>Địa chỉ giao hàng</span>
-						<p>329 Hai Bà Trưng</p>
-					</div>
-				</div>
-				<div class="col-6">
-					<div class="order-detail-total">
-						<div>
-							<span>Tổng tiền</span> 
-							<span>32873 VNĐ</span>
-						</div>
-						<p>Thanh toán bằng thẻ tín dụng/thẻ ghi nợ</p>
-					</div>
-				</div>
-			</div>
-		</div>
+		<div class="order-pane-tab active" id="order-all"></div>
+		
+		<div class="order-pane-tab" id="order-wait"></div>
+		
+		<div class="order-pane-tab" id="order-tranport"></div>
+		
+		<div class="order-pane-tab" id="order-delivering"></div>
+		
+		<div class="order-pane-tab" id="order-complete"></div>
 	</div>
 </div>
 
@@ -158,25 +272,6 @@
 			orderPane.classList.add('active');
 		}
 	})
-	
-	//order
-	const orderContainer = document.querySelector('.order-container');
-	const orderDetail = document.querySelector('.order-detail');
-	const orderItems = document.querySelectorAll('.order-table-item');
-	const backBtn = document.querySelector('.order-detail--header-back');
-
-	orderItems.forEach((orderItem, index) => {
-		orderItem.onclick = function() {
-			orderContainer.style.display = 'none';
-			orderDetail.style.display = 'block';
-		}
-	})
-
-	backBtn.addEventListener('click', function() {
-		orderContainer.style.display = 'block';
-		orderDetail.style.display = 'none';
-	})
 </script>
-
 
 

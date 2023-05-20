@@ -1,11 +1,10 @@
 package com.example.CDWeb.repository;
 
-import java.util.List;
+import java.util.List; 
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.CDWeb.model.Category;
 import com.example.CDWeb.model.Product;
 
 @Repository
@@ -13,14 +12,14 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
 	List<Product> findAll();
 	
-	List<Product> findByCategoryCateID(Integer cateID);
+	List<Product> findByCategoryCateid(Integer cateid);
 	
-	List<Product> findByCategoryCateIDOrderByPriceAsc(Integer cateID);
+	List<Product> findByCategoryCateidOrderByPriceAsc(Integer cateid);
 	
-	List<Product> findByCategoryCateIDOrderByPriceDesc(Integer cateID);
+	List<Product> findByCategoryCateidOrderByPriceDesc(Integer cateid);
 	
-	List<Product> findByCategoryCateIDOrderByProductNameAsc(Integer cateID);
+	List<Product> findByCategoryCateidOrderByProductNameAsc(Integer cateid);
 	
-	List<Product> findByCategoryCateIDOrderByProductNameDesc(Integer cateID);
+	List<Product> findByCategoryCateidOrderByProductNameDesc(Integer cateid);
 	
 }
