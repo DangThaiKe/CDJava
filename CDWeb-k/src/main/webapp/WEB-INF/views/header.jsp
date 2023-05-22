@@ -118,7 +118,7 @@
 					<svg xmlns="http://www.w3.org/2000/svg" width="18" height=18 fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
   						<path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
 					</svg>
-					<span class="cart-amount">2</span>
+					<span class="cart-amount">${cart.getLength()}</span>
 				</button>
 				<div class="offcanvas offcanvas-end modal-cart" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
   					<div class="offcanvas-header modal-cart--header">
@@ -126,41 +126,26 @@
     					<button class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   					</div>
   					<div class="offcanvas-body container scrollbar">
-    					<div class="row">
-							  <div class="col-12 cart-item">
-							  		<a href="" class="cart-item--img"> 
-							  			<img alt="" src="https://cdn.shopify.com/s/files/1/0719/3244/4977/products/jts8bmmdfoxjtv9kh7ku.png?v=1678542334&width=300">								  		
-							  		</a>
-								  	<div class="cart-item--body">
-								  		<h5>Petite Lavender</h5>
-								  		<p>209.000VNĐ</p>
-								  		<div class="cart-item--body-footer">
-								  			<div class="cart-item--control">
-								  				<button class="cart-item--control-btn">
-								  					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
-  														<path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-													</svg>								  				
-								  				</button>
-								  				<span>2</span>
-								  				<button class="cart-item--control-btn">
-								  					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-  														<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-													</svg>
-							  					</button>
-							  				</div>
-							  				<button class="cart-item--btn-close"> 
-								  				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
- 													 <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-												</svg>
-							  				</button>
-							  			</div>
-							  		</div>
-							  </div>	
+    					<div id="cart" class="row">
+    						<c:if test="${cart.items.size() == 0}">
+	    						<h1 style="text-align: center; margin-top: 75px; color: #767575; font-weight: 300;">Giỏ hàng trống</h1>
+	    					</c:if>
+    						<c:forEach items="${cart.items}" var="item">
+								  <a href="#" id="cart-item" class="col-12 cart-item">
+								  		<div class="cart-item--img"> 
+								  			<img alt="" src="${item.product.image}">								  		
+								  		</div>
+									  	<div class="cart-item--body">
+									  		<h5>${item.product.productName}</h5>
+									  		<p>${item.product.price * item.quantity}00 VNĐ</p>
+								  		</div>
+								  </a>	
+    						</c:forEach>
 						</div>
  					</div>
  					<div class="offcanvas-footer modal-cart--footer">
- 						<a href="#" class="modal-cart--footer-btn">Xem giỏ hàng</a>
- 						<a href="#" class="modal-cart--footer-btn">Thanh toán (290.000 VNĐ)</a>
+ 						<a href="/cart" class="modal-cart--footer-btn">Xem giỏ hàng</a>
+ 						<a href="#" class="modal-cart--footer-btn">Thanh toán (${cart.getPriceFormat()} VNĐ)</a>
  					</div>
 				</div>
 			</div>
@@ -177,7 +162,6 @@
 			</div>
 	</div>
 </header>
-
 
 
 

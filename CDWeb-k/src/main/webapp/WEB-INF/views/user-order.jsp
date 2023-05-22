@@ -28,15 +28,22 @@
 				orderAll.append(row);
 				var listOrder = $("#list-order");
 				
-				$.each(data, function(index, order) {
-					listOrder.append(
-							"<tr class='order-table-item'>" +
-								"<td>" + order.orderid + "</td>" +
-	                			"<td>" + order.orderStatus + "</td>" +
-	                			"<td>" + order.purchaseDate + "</td>" +
-								"<td>" + order.tongtien + " VNĐ</td>" +
-						"</tr>");
-				})
+				if(data.length > 0) {
+					$.each(data, function(index, order) {
+						listOrder.append(
+								"<tr class='order-table-item'>" +
+									"<td>" + order.orderid + "</td>" +
+		                			"<td>" + order.orderStatus + "</td>" +
+		                			"<td>" + order.purchaseDate + "</td>" +
+									"<td>" + order.tongtien + " VNĐ</td>" +
+							"</tr>");
+					})
+				} else {
+					orderAll.empty();
+					orderAll.append(
+				            "<span class='order-empty'>" + "Không có đơn hàng" + "</span>"
+				        );
+				}
 			}
 		});
 		
@@ -65,8 +72,8 @@
 				orderWait.append(rowWait);
 				var listWait = $("#list-order-wait");
 				
-				$.each(data, function(index, order) {
-				    if(order != null) {
+				if(data.length > 0) {
+					$.each(data, function(index, order) {
 				    	listWait.append(
 				            "<tr class='order-table-item'>" +
 				                "<td>" + order.orderid + "</td>" +
@@ -74,14 +81,13 @@
 				                "<td>" + order.purchaseDate + "</td>" +
 				                "<td>" + order.tongtien + " VNĐ</td>" +
 				            "</tr>");
-				    } 
-				    else {
-				        orderWait.empty();
-				        orderWait.append(
-				            "<span class='order-empty'>" + "Không có đơn hàng" + "</span>"
-				        );
-				    }
-				});
+					});
+				} else {
+			        orderWait.empty();
+			        orderWait.append(
+			            "<span class='order-empty'>" + "Không có đơn hàng" + "</span>"
+			        );
+			    }
 			}
 		})
 		
@@ -110,8 +116,8 @@
 				orderTranport.append(rowTranport);
 				var listTranport = $("#list-order-tranport");
 				
-				$.each(data, function(index, order) {
-				    if(order != null) {
+				if(data.length > 0) {
+					$.each(data, function(index, order) {
 				    	listTranport.append(
 				            "<tr class='order-table-item'>" +
 				                "<td>" + order.orderid + "</td>" +
@@ -119,14 +125,13 @@
 				                "<td>" + order.purchaseDate + "</td>" +
 				                "<td>" + order.tongtien + " VNĐ</td>" +
 				            "</tr>");
-				    } 
-				    else {
-				    	orderTranport.empty();
-				    	orderTranport.append(
-				            "<span class='order-empty'>" + "Không có đơn hàng" + "</span>"
-				        );
-				    }
-				});
+					});
+				} else {
+			    	orderTranport.empty();
+			    	orderTranport.append(
+			            "<span class='order-empty'>" + "Không có đơn hàng" + "</span>"
+			        );
+			    }
 			}
 		})
 		
@@ -155,8 +160,8 @@
 				orderDelivering.append(rowDelivering);
 				var listDelivering = $("#list-order-delivering");
 				
-				$.each(data, function(index, order) {
-				    if(order != null) {
+				if(data.length > 0) {
+					$.each(data, function(index, order) {
 				    	listDelivering.append(
 				            "<tr class='order-table-item'>" +
 				                "<td>" + order.orderid + "</td>" +
@@ -164,14 +169,13 @@
 				                "<td>" + order.purchaseDate + "</td>" +
 				                "<td>" + order.tongtien + " VNĐ</td>" +
 				            "</tr>");
-				    } 
-				    else {
-				    	orderDelivering.empty();
-				    	orderDelivering.append(
-				            "<span class='order-empty'>" + "Không có đơn hàng" + "</span>"
-				        );
-				    }
-				});
+					});
+				} else {
+			    	orderDelivering.empty();
+			    	orderDelivering.append(
+			            "<span class='order-empty'>" + "Không có đơn hàng" + "</span>"
+			        );
+			    }
 			}
 		})
 		
@@ -201,8 +205,8 @@
 				orderComplete.append(rowComplete);
 				var listComplete = $("#list-order-complete");
 				
-				$.each(data, function(index, order) {
-				    if(order != null) {
+				if(data.length > 0) {
+					$.each(data, function(index, order) {
 				    	listComplete.append(
 				            "<tr class='order-table-item'>" +
 				                "<td>" + order.orderid + "</td>" +
@@ -210,14 +214,14 @@
 				                "<td>" + order.purchaseDate + "</td>" +
 				                "<td>" + order.tongtien + " VNĐ</td>" +
 				            "</tr>");
-				    } 
-				    else {
-				    	orderComplete.empty();
-				    	orderComplete.append(
-				            "<span class='order-empty'>" + "Không có đơn hàng" + "</span>"
-				        );
-				    }
-				});
+				   
+					});
+				}  else {
+			    	orderComplete.empty();
+			    	orderComplete.append(
+			            "<span class='order-empty'>" + "Không có đơn hàng" + "</span>"
+			        );
+			    }
 			}
 		})
 	})	

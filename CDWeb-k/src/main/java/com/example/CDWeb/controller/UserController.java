@@ -1,10 +1,6 @@
 package com.example.CDWeb.controller;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
-import java.io.FilterOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest; 
 import javax.servlet.http.HttpSession;
@@ -16,9 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
+import com.example.CDWeb.model.Category;
 import com.example.CDWeb.model.User;
+import com.example.CDWeb.repository.CategoryRepository;
 import com.example.CDWeb.repository.UserRepository;
 
 @Controller
@@ -26,6 +23,9 @@ public class UserController {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private CategoryRepository categoryRepository;
 	
 	@GetMapping("/register")
 	public String showRegisterPage() {
@@ -70,6 +70,9 @@ public class UserController {
 	public String showUserPage(HttpSession session, Model model) {
 		User user = (User) session.getAttribute("user");
 		model.addAttribute("user", user);
+		
+		List<Category> categorys = categoryRepository.findAll();
+		model.addAttribute("categorys", categorys);
 		
 		return "user";
 	}

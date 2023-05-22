@@ -12,6 +12,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
 	List<Product> findAll();
 	
+	Product findByProductid(Integer productid);
+	
 	List<Product> findByCategoryCateid(Integer cateid);
 	
 	List<Product> findByCategoryCateidOrderByPriceAsc(Integer cateid);

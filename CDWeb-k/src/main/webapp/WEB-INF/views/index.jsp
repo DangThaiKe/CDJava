@@ -172,6 +172,9 @@
 									    </div>
 									</a>
 									<button class="product-item--wishlist"></button>
+									<form action="/add-to-cart/${product.productid}" method="post">
+										<input value="Add" type="submit"> 
+									</form>
 								</div>
 		    				</div>
 					 	</c:forEach>

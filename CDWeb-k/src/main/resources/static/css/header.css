@@ -313,23 +313,29 @@
 	align-items: center;
 	color: var(--black-color);
 	margin-bottom: 20px;
+	text-decoration: none;
+}
+
+.cart-item:hover {
+	background-color: #f5f5f5;
+	color: var(--black-color);
 }
 
 .cart-item--img {
 	display: inline-block;
-	background-color: #f5f5f5;
 	margin-right: 20px;
 }
 
 .cart-item--img img {
 	width: 80px;
-	height: 120px;	
+	height: 80px;	
 }
 
 .cart-item--body {
 	height: 100%;
 	font-size: 1.4rem;
 	flex: 1;
+	padding: 8px 0;
 }
 
 .cart-item--body h5 {
