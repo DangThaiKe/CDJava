@@ -1,5 +1,10 @@
+<%@page import="com.example.CDWeb.model.ShoppingCart"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.text.NumberFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,64 +42,51 @@
 			<div class="container" style="margin-top: 20px; padding: 0;">
   				<div class="row">
     				<div class="col-lg-7 col-md-12 col-sm-12 col-12">
-      					<div class="shop-cart-item">
-      						<a href="#">
-      							<img alt="shop-cart-item--img" src="https://cdn.shopify.com/s/files/1/0719/3244/4977/products/g1c0weypw58r7hyiyel1.png?v=1680023635&width=300">
-      						</a>
-      						<div class="shop-cart-item--detail">
-      							<div class="shop-cart-item--inner">
-	      							<a href="#">QUADRO CHERRY BLOSSOM</a>
-	      							<span></span>
-	      							<p>323323 VNĐ</p>
-      							</div>
-	      						<div class="shop-cart-item--controll">
-	      							<div class="shop-cart-item--controll-body">
-		      							<button class="shop-cart-item--control-btn">
-									  		<i class="bi bi-dash"></i>							  				
-									  	</button>
-									  	<span>2</span>
-									  	<button class="shop-cart-item--control-btn">
-									  		<i class="bi bi-plus"></i>
-								  		</button>
+    					<c:if test="${cart.items.size() == 0}">
+    						<h1 style="text-align: center; margin-top: 75px;">Giỏ hàng trống</h1>
+    					</c:if> 
+    					<c:forEach items="${cart.items}" var="item">
+	      					<div class="shop-cart-item">
+	      						<a href="#">
+	      							<img alt="shop-cart-item--img" src="${item.product.image}">
+	      						</a>
+	      						<div class="shop-cart-item--detail">
+	      							<div class="shop-cart-item--inner">
+		      							<a href="#">${item.product.productName}</a>
+		      							<span></span>
+		      							<p>${item.product.price * item.quantity}00 VNĐ</p>
 	      							</div>
-							  		<button class="shop-cart-item--btn-close"> 
-								  		<i class="bi bi-trash3"></i>
-							  		</button>
-	      						</div>
-      						</div>
-      					</div>
-      					<div class="shop-cart-item">
-      						<a href="#">
-      							<img alt="shop-cart-item--img" src="https://cdn.shopify.com/s/files/1/0719/3244/4977/products/g1c0weypw58r7hyiyel1.png?v=1680023635&width=300">
-      						</a>
-      						<div class="shop-cart-item--detail">
-      							<div class="shop-cart-item--inner">
-	      							<a href="#">QUADRO CHERRY BLOSSOM</a>
-	      							<span></span>
-	      							<p>323323 VNĐ</p>
-      							</div>
-	      						<div class="shop-cart-item--controll">
-	      							<div class="shop-cart-item--controll-body">
-		      							<button class="shop-cart-item--control-btn">
-									  		<i class="bi bi-dash"></i>							  				
-									  	</button>
-									  	<span>2</span>
-									  	<button class="shop-cart-item--control-btn">
-									  		<i class="bi bi-plus"></i>
+		      						<div class="shop-cart-item--controll">
+		      							<div class="shop-cart-item--controll-body">
+		      								<form action="/remove-cart/${item.product.productid}" method="post">
+				      							<button type="submit" class="shop-cart-item--control-btn">
+											  		<i class="bi bi-dash"></i>							  				
+											  	</button>
+								  			</form>  
+										  	<span>${item.quantity}</span>
+										  	<form action="/add-to-cart/${item.product.productid}" method="post">
+											  	<button type="submit" class="shop-cart-item--control-btn">
+											  		<i class="bi bi-plus"></i>
+										  		</button>
+								  			</form> 
+		      							</div>
+								  		<button class="shop-cart-item--btn-close"> 
+								  			<form action="/remove-from-cart/${item.product.productid}" method="post">
+											  	<button type="submit" style="font-size: 1.8rem; background-color: transparent;">
+												 	<i class="bi bi-trash3"></i> 
+										  		</button>
+								  			</form>
 								  		</button>
-	      							</div>
-							  		<button class="shop-cart-item--btn-close"> 
-								  		<i class="bi bi-trash3"></i>
-							  		</button>
+		      						</div>
 	      						</div>
-      						</div>
-      					</div>
+	      					</div>
+    					</c:forEach>
     				</div>
     				<div class="col-lg-5 col-md-12 col-sm-12 col-12 px-5">
       					<div class="cart-summer">
       						<div class="cart-total">
       							<span>Tổng phụ:</span>
-      							<span>223232 VNĐ</span>
+      							<span>${cart.getPriceFormat()} VNĐ</span>
       						</div>
       						<a href="#" class="cart-checkout--btn">Thanh toán</a>
       						<span class="cart-fax">ĐÃ BAO GỒM THUẾ. VẬN CHUYỂN ĐƯỢC TÍNH KHI THANH TOÁN</span>
