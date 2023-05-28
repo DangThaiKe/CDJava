@@ -28,7 +28,7 @@
  <!-- Bootstrap Icon -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
-<title>Insert title here</title>
+<title>Giỏ Hàng</title>
 </head>
 <body>
 	
@@ -88,7 +88,7 @@
       							<span>Tổng phụ:</span>
       							<span>${cart.getPriceFormat()} VNĐ</span>
       						</div>
-      						<a href="#" class="cart-checkout--btn">Thanh toán</a>
+      						<a href="/checkout" class="cart-checkout--btn">Thanh toán</a>
       						<span class="cart-fax">ĐÃ BAO GỒM THUẾ. VẬN CHUYỂN ĐƯỢC TÍNH KHI THANH TOÁN</span>
       					</div>
     				</div>

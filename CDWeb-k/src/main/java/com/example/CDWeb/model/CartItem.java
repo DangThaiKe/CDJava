@@ -1,5 +1,6 @@
 package com.example.CDWeb.model;
 
+
 public class CartItem {
 	
 	private Product product;
@@ -30,10 +31,10 @@ public class CartItem {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	
 
 	
 }
-
 
 
 

@@ -1,6 +1,6 @@
 package com.example.CDWeb.controller;
 
-import java.util.List; 
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +15,8 @@ import com.example.CDWeb.model.ShoppingCart;
 import com.example.CDWeb.repository.CategoryRepository;
 import com.example.CDWeb.repository.ProductRepository;
 
+
+
 @Controller
 public class HomeController {
 	
@@ -25,7 +27,7 @@ public class HomeController {
 	private CategoryRepository categoryRepository;
 	
 	@GetMapping("/")
-	public String listProduct(Model model, HttpSession session) {
+	public String listProduct(Model model ,HttpSession session) {
 		List<Product> products = productRepository.findAll();
 		model.addAttribute("products", products);
 		
@@ -35,17 +37,8 @@ public class HomeController {
 		ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
 		model.addAttribute("cart", cart);
 		
+		
+		
 		return "index";
 	}
-	
-	
-//	@GetMapping("/product")
-//	public String produc() {
-//		return "product-details";
-//	}
-//	
-//	@GetMapping("/checkout")
-//	public String checkout() {
-//		return "checkout";
-//	}
 }

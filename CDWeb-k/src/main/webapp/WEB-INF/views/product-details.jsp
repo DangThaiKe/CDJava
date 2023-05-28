@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,6 +77,7 @@
 </script>
 </head>
 <body>
+
 <div id="main">
 <jsp:include page="header.jsp"></jsp:include>
 
@@ -94,19 +96,19 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="10000">
-      <img src="https://cdn.shopify.com/s/files/1/0719/3244/4977/products/mwdyzzepnza4hqeubzwu.png?v=1680023628" class="d-block w-100" alt="product-img">
+      <img src="${productDetail.image}" class="d-block w-100" alt="product-img">
       <div class="carousel-caption d-none d-md-block">
         
       </div>
     </div>
     <div class="carousel-item" data-bs-interval="2000">
-      <img src="https://cdn.shopify.com/s/files/1/0719/3244/4977/products/mwdyzzepnza4hqeubzwu.png?v=1680023628" class="d-block w-100" alt="product-img">
+      <img src="${productDetail.image}" class="d-block w-100" alt="product-img">
       <div class="carousel-caption d-none d-md-block">
         
       </div>
     </div>
     <div class="carousel-item">
-      <img src="https://cdn.shopify.com/s/files/1/0719/3244/4977/products/mwdyzzepnza4hqeubzwu.png?v=1680023628" class="d-block w-100" alt="product-img">
+      <img src="${productDetail.image}" class="d-block w-100" alt="product-img">
       <div class="carousel-caption d-none d-md-block">
        
       </div>
@@ -129,15 +131,16 @@
 		<div class="no-stick">
 			<div class="product-main-info" style="justify-content: space-between;display: flex;">
 				<div class="product-block product-block_title" style="margin-top: 30px">
-					<h1 class="fw-light" style="font-size: 30px"> Đồng Hồ Cao Cấp DW</h1>
+					<h1 class="fw-light" style="font-size: 30px"> ${productDetail.productName}</h1>
 				</div>
+				
 			<div class="product-block product-block_price" style="margin-top: 30px;flex: 0 0 185px;justify-content: flex-end;display: flex;font-size: 1.6rem">
 				<div class="js fw-light" id="price-template" role="status">
 					<div class="price">
 					 	<div class="price_container">
 					 		<div class="price_regular">
 					 			<span class="visually-hidden"> Regular price</span>
-					 			<span class="price-item price-item--regular" style="font-size: 30px"> 200000VNĐ</span>
+					 			<span class="price-item price-item--regular" style="font-size: 30px"> ${productDetail.priceFormat} VNĐ</span>
 					 		</div>
 					 	</div>
 					</div>
@@ -165,10 +168,14 @@
 			<button type="button" id="bt3" class="btn btn-outline-dark">Size 16mm</button>
 		
 		</div>
+		<form  action="/add-to-cart/${productDetail.productid}"  method="post">
 		<div class="button-buy-cart d-grid gap-2 col-6 mx-auto" style="height: 45px;width: auto;margin-top: 12px;">
-			<button class="btn btn-dark btn-lg " id="addToCartButton" style="font-size: 20px;" > ADD TO CART </button>
+		
+			<button type="submit" class="btn btn-dark btn-lg "  style="font-size: 20px;" > ADD TO CART </button>
+			
 
 		</div>
+		</form>
 		<div class="text-spinnger_row" style="padding-top: 12px">
   					<span class="spinner-grow spinner-grow-sm text-danger" role="status" aria-hidden="true" ></span> In Stock
   
@@ -408,7 +415,9 @@
 </div>
 
 <!-- Product -->
-		<div class="product-new show-scroll">
+
+			<div class="product-new show-scroll">
+			
 				<div class="product-new--header">
 					<h3>SẢN PHẨM KHÁC</h3>
 					<div class="product-new--control">
@@ -420,34 +429,31 @@
 						 </button>
 					</div>
 				</div>
-				
 				<div class="product-new--container container">
 					 <div class="row slide-show">
-	    				<div class="col-3"> 
-	    					<jsp:include page="product-item.jsp"></jsp:include>
-	    				</div>
-	    				<div class="col-3"> 
-	    					<jsp:include page="product-item.jsp"></jsp:include>
-	    				</div>
-	    				<div class="col-3"> 
-	    					<jsp:include page="product-item.jsp"></jsp:include>
-	    				</div>
-	    				<div class="col-3"> 
-	    					<jsp:include page="product-item.jsp"></jsp:include>
-	    				</div>
-	    				<div class="col-3"> 
-	    					<jsp:include page="product-item.jsp"></jsp:include>
-	    				</div>
-	    				<div class="col-3"> 
-	    					<jsp:include page="product-item.jsp"></jsp:include>
-	    				</div>
-	    				<div class="col-3"> 
-	    					<jsp:include page="product-item.jsp"></jsp:include>
-	    				</div>
+					 	<c:forEach items="${products}" var="product">
+		    				<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-2"> 
+		    					<div class="product">
+									<a href="<c:url value="/product-details/${product.productid}"/>" class="product-item">
+									    <img 
+									    	alt="product-img" 
+									    	src="${product.image}">
+									    <span class="rose-gold">rose gold</span>
+									    <div class="product-item-body">
+									      	<h4>${product.productName}</h4>
+									      	<span></span>
+									      	<p>${product.getPriceFormat()} VNĐ</p>
+									    </div>
+									</a>
+									
+								</div>
+		    				</div>
+					 </c:forEach>
 	  				</div>
 				</div>
+					
 			</div>
-
+		
 
 
 	

@@ -1,7 +1,10 @@
 package com.example.CDWeb.controller;
 
+
 import java.util.List;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,20 +14,38 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+
+
 import com.example.CDWeb.model.Category;
+import com.example.CDWeb.model.Orders;
 import com.example.CDWeb.model.Product;
+
 import com.example.CDWeb.model.ShoppingCart;
+import com.example.CDWeb.model.User;
 import com.example.CDWeb.repository.CategoryRepository;
 import com.example.CDWeb.repository.ProductRepository;
 
+
 @Controller
 public class CartController {
-	
+
 	@Autowired
 	private ProductRepository productRepository;
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
+	
+	@GetMapping("/cart")
+	public String showCartPage(HttpSession session, Model model) {
+		List<Category> categorys = categoryRepository.findAll();
+		model.addAttribute("categorys", categorys);
+		
+		ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+		
+		model.addAttribute("cart", cart);
+		
+		return "cart-page"; 
+	}
 	
 	// add to cart and set quantity + 1
 	@PostMapping("/add-to-cart/{productid}")
@@ -38,7 +59,7 @@ public class CartController {
 		}
 		cart.addItem(product);
 		
-		return "redirect:/cart";
+		return "redirect:/cart" ;
 	} 
 	
 	// remove to cart and set quantity - 1
@@ -71,15 +92,16 @@ public class CartController {
 		return "redirect:/cart";
 	}
 	
-	@GetMapping("/cart")
-	public String showCartPage(HttpSession session, Model model) {
-		List<Category> categorys = categoryRepository.findAll();
-		model.addAttribute("categorys", categorys);
-		
-		ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-		
-		model.addAttribute("cart", cart);
-		
-		return "cart-page"; 
-	}
+	
+//	@GetMapping("/checkout")
+//	public String viewUser(HttpServletRequest resquest,HttpSession session) {
+//		Orders order= new Orders();
+//		User loginInfo=(User)session.getAttribute("LoginInfo");
+//		if(loginInfo !=null) {
+//			order.setDeliveryAddress(loginInfo.getAddress());
+//			
+//			
+//		}
+//		return "checkout";
+//	}
 }

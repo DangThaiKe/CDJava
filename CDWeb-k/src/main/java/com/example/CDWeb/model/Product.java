@@ -16,27 +16,27 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "products")
 public class Product {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productid;
-	
+
 	@Column(name = "product_name", nullable = false)
 	private String productName;
-	
+
 	@Column(name = "[image]", nullable = false)
 	private String image;
-	
+
 	@Column(name = "price", nullable = false)
 	private double price;
-	
+
 	@Column(name = "description", nullable = false)
 	private String description;
-	
+
 	@Column(name = "discount", nullable = false)
 	private int discount;
-	
-	// (fetch = FetchType.LAZY) 
+
+	// (fetch = FetchType.LAZY)
 	// chỉ định cách thức lấy dữ liệu
 	// LAZY, nó sẽ chỉ load dữ liệu của trường category khi ta truy cập đến nó
 	// EAGER thì nó sẽ tự động load dữ liệu của trường category khi truy vấn Product
@@ -47,8 +47,7 @@ public class Product {
 
 	@OneToMany(mappedBy = "product")
 	private List<OrdersDetail> ordersDetails;
-	 
-	
+
 	public Product() {
 		super();
 	}
@@ -64,7 +63,6 @@ public class Product {
 		this.discount = discount;
 		this.category = category;
 	}
-	
 
 	public int getProductid() {
 		return productid;
@@ -121,8 +119,7 @@ public class Product {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	
-	
+
 	public List<OrdersDetail> getOrdersDetails() {
 		return ordersDetails;
 	}
@@ -133,16 +130,8 @@ public class Product {
 
 	public String getPriceFormat() {
 		String formattedNumber = String.format("%.3f", getPrice()).replace(".", ",");
-		
+
 		return formattedNumber;
 	}
-	
+
 }
-
-
-
-
-
-
-
-

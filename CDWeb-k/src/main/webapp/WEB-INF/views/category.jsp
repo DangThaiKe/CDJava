@@ -22,7 +22,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
  <!-- Bootstrap Icon -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-<title>Insert title here</title>
+<title>Danh Mục Sản Phẩm</title>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -79,18 +79,18 @@
 		</div> 
 		
 		<!-- Product List -->
-		<div class="container cate-product-list">
-  			<div class="row" id="product-list-sort">
+		<div class="container cate-product-list product-container">
+  			<div class="row  " id="product-list-sort">
   				<c:forEach items="${products}" var="product">
-	    			<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-1 py-2 sort-by">
-	      				<div class="product">
-							<a href="#" class="product-item">
+	    			<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-1 py-2 sort-by   ">
+	      				<div class="product-item ">
+							<a href="<c:url value="/product-details/${product.productid}"/>" class="product-item">
 							    <img 
 							    	alt="product-img" 
 							    	src="${product.image}"
 							    >
 							    <span class="rose-gold">rose gold</span>
-							    <div class="product-item-body">
+							    <div class="product-item-body  product-title">
 							      	<h4>${product.productName}</h4>
 							      	<span></span>
 							      	<p>${product.getPriceFormat()} VNĐ</p>

@@ -1,8 +1,8 @@
 package com.example.CDWeb.model;
 
-import java.util.List; 
+import java.util.List;
 
-import javax.persistence.Column; 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,43 +11,41 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.springframework.web.multipart.MultipartFile;
-
 @Entity
 @Table(name = "Users")
 public class User {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "userid")
 	private int userid;
-	
+
 	@Column(name = "email", nullable = false, unique = true)
 	private String email;
-	
+
 	@Column(name = "first_name", nullable = false)
 	private String firstName;
-	
+
 	@Column(name = "last_name", nullable = false)
 	private String lastName;
-	
+
 	@Column(name = "[password]", nullable = false)
 	private String password;
-	
+
 	@Column(name = "[address]")
 	private String address;
-	
+
 	@Column(name = "phone")
 	private String phone;
-	
+
 	@Column(name = "avatar")
 	private byte[] avatar;
-	
+
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private List<Orders> orders;
-	
+
 	public User() {
-		super();
+		
 	}
 
 	public User(int userid, String email, String firstName, String lastName, String password, String address,
@@ -128,7 +126,3 @@ public class User {
 	}
 
 }
-
-
-
-

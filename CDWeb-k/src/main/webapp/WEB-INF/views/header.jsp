@@ -16,6 +16,9 @@
 	})
 </script>
 
+
+
+
 <header class="header">
 	<div class="contaienr">
 		<div class="top-header">
@@ -56,8 +59,8 @@
   						<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
 					</svg>
 				</button>
-				<div id="search">
-					<input class="search-input" placeholder="Tìm kiếm...">
+				<div id="search" class="search-btn">
+					<input class="search-input" placeholder="Tìm kiếm..." type="text">
 				</div>
 				<!-- Search Menu -->
 			</div>
@@ -145,7 +148,7 @@
  					</div>
  					<div class="offcanvas-footer modal-cart--footer">
  						<a href="/cart" class="modal-cart--footer-btn">Xem giỏ hàng</a>
- 						<a href="#" class="modal-cart--footer-btn">Thanh toán (${cart.getPriceFormat()} VNĐ)</a>
+ 						<a href="/cart" class="modal-cart--footer-btn">Thanh toán (${cart.getPriceFormat()} VNĐ)</a>
  					</div>
 				</div>
 			</div>
@@ -161,8 +164,41 @@
 				</ul>
 			</div>
 	</div>
-</header>
+	
+	<script type="text/javascript">
+	
+	// Gán phần tử HTML với định danh "search" vào biến searchElement
+	const searchElement = document.getElementById("search");
 
+	// Gán phần tử HTML có lớp "search-input" vào biến searchInputElement
+	const searchInputElement = searchElement.querySelector(".search-input");
+
+	// Thêm lắng nghe sự kiện khi phiên tìm kiếm bắt đầu
+	searchInputElement.addEventListener("input", (event) => {
+	  const searchTerm = event.target.value.toLowerCase(); // Lấy giá trị từng ký tự người dùng nhập vào ô tìm kiếm và đổi thành chữ thường
+	  const items = document.querySelectorAll(".product-item"); // Lấy tất cả các phần tử sản phẩm với lớp tương ứng "product-item"
+
+	  // Tạo vòng lặp để lặp qua từng phần tử sản phẩm
+	  items.forEach((item) => {
+	    const titleElement = item.querySelector(".product-title"); // Lấy phần tử trong sản phẩm có lớp "product-title"
+	    const titleText = titleElement.textContent.toLowerCase(); // Lấy nội dung của phần tử "product-title" và đổi thành chữ thường
+	  
+	    if (titleText.includes(searchTerm)) { // Kiểm tra xem nội dung của "product-title" có chứa giá trị tìm kiếm hay không
+	      item.style.display = "block"; // Hiện phần tử sản phẩm
+	    } else {
+	      item.style.display = "none"; // Ẩn phần tử sản phẩm
+	    }
+	  });
+	});
+
+
+	  
+
+
+
+
+</script>
+</header>
 
 
 

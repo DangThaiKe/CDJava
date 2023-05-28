@@ -1,5 +1,6 @@
 package com.example.CDWeb.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -23,7 +24,7 @@ public class Orders {
 	private int orderid;
 	
 	@Column(name="purchase_date", nullable = false) 
-	private String purchaseDate;
+	private Date purchaseDate;
 	
 	@Column(name="delivery_address", nullable = false)
 	private String deliveryAddress;
@@ -46,7 +47,7 @@ public class Orders {
 		super();
 	}
 
-	public Orders(int orderid, String purchaseDate, String deliveryAddress, String orderStatus, String tongtien,
+	public Orders(int orderid, Date purchaseDate, String deliveryAddress, String orderStatus, String tongtien,
 			User user, List<OrdersDetail> ordersDetails) {
 		super();
 		this.orderid = orderid;
@@ -66,12 +67,12 @@ public class Orders {
 		this.orderid = orderid;
 	}
 
-	public String getPurchaseDate() {
+	public Date getPurchaseDate() {
 		return purchaseDate;
 	}
 
-	public void setPurchaseDate(String purchaseDate) {
-		this.purchaseDate = purchaseDate;
+	public void setPurchaseDate(Date date) {
+		this.purchaseDate = date;
 	}
 
 	public String getDeliveryAddress() {
@@ -102,8 +103,8 @@ public class Orders {
 		return tongtien;
 	}
 
-	public void setTongtien(String tongtien) {
-		this.tongtien = tongtien;
+	public void setTongtien(String string) {
+		this.tongtien = string;
 	}
 
 	public User getUser() {
@@ -113,6 +114,8 @@ public class Orders {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	
 
 //	public String getTotalFormat() {
 //		String formattedNumber = String.format("%.3f", getTongtien()).replace(".", ",");

@@ -1,6 +1,6 @@
 package com.example.CDWeb.model;
 
-import java.sql.Date;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="OrdersDetail")
+@Table(name="ordersDetail")
 public class OrdersDetail {
 	
 	@Id
@@ -29,7 +29,7 @@ public class OrdersDetail {
 	private Product product;
 	
 	@Column(name="quantity", nullable = false) 
-	private Date quantity;
+	private int quantity;
 	
 	@Column(name="payment_method", nullable = false)
 	private String paymentMethod;
@@ -38,7 +38,7 @@ public class OrdersDetail {
 		super();
 	}
 
-	public OrdersDetail(int ordersDetailId, Orders orderid, Product product, Date quantity,
+	public OrdersDetail(int ordersDetailId, Orders orderid, Product product, int quantity,
 			String paymentMethod) {
 		super();
 		this.ordersDetailId = ordersDetailId;
@@ -64,11 +64,11 @@ public class OrdersDetail {
 		this.paymentMethod = paymentMethod;
 	}
 
-	public Date getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(Date quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
@@ -89,7 +89,6 @@ public class OrdersDetail {
 	}
 	
 }
-
 
 
 

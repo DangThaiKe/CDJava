@@ -1,5 +1,10 @@
+<%@page import="com.example.CDWeb.model.ShoppingCart"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.text.NumberFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +23,8 @@
 <title>CheckOut</title>
 </head>
 <body>
+<form action="/checkout" method="POST"  >
+
 <div class="container">
   <div class="row ">
     <div class="col-6">
@@ -30,7 +37,7 @@
 	</div>
 	<div class="cart_info " style="margin-top: 30px">
 		<div class="d-flex align-items-center justify-content-start gap-3">
- 			 <div class="fw-bold" ><a href="#" style="color: black;">Cart</a></div>
+ 			 <div class="fw-bold" ><a href="/cart" style="color: black;">Cart</a></div>
   				<i class="bi bi-chevron-right"></i>
  			 <div class="fw-bold" style="color: #d89999">Information</div>
   				<i class="bi bi-chevron-right"></i>
@@ -39,12 +46,13 @@
   			 <div class="fw-bold" style="color: #3d3b3b9e">Payment</div>
 </div>
 	</div>
-	<form action="">
+	
+	 
+	 
 		<div class="contact_form" style="margin-top: 40px;">
 		<label style="font-size: 20px">CONTACT INFORMATION</label>
-				
 			<div class="form-floating mb-3"> 
-  				<input type="email" class="form-control" id="floatingInput" placeholder="Email" style="margin-top: 12px;height: 44px">
+  				<input value="${user.email}" type="email" class="form-control" id="floatingInput" placeholder="Email" id="email" name="email"  style="margin-top: 12px;height: 44px;font-size: 15px">
   				<label for="floatingInput">Email</label>
 			</div>
 				<div class="mb-3 form-check">
@@ -67,50 +75,32 @@
 				<div class="row" style="margin-top: 20px">
   					<div class="col">
   						<div class="form-floating">
-  							<input type="text" class="form-control" id="floatingInput" placeholder="First name" style="height: 44px" >
-    						<label for="floatingInput">First name</label>
+  							<input value="${user.lastName}" type="text" class="form-control" id="floatingInput" placeholder="First name" id="lastName" name="lastName" style="height: 44px;font-size: 15px" >
+    						<label for="floatingInput">Họ</label>
   						</div>  					
   					</div>
   					<div class="col">
   						<div class="form-floating ">
-  							<input type="text" class="form-control" id="floatingInput" placeholder="Last name" style="height: 44px">
-    						<label for="floatingInput">Last name</label>
+  							<input value="${user.firstName}" type="text" class="form-control" id="floatingInput" placeholder="Last name" id="firstName" name="firstName" style="height: 44px;font-size: 15px" >
+    						<label for="floatingInput">Tên</label>
   						</div>   					
   					</div>
 				</div>
-				<div class="form-floating col"style="margin-top: 20px">
-
-    					<input style="margin-top: 20px;height: 44px" class="form-control" id="floatingInput" type="text" placeholder="Company (optional)" aria-label="Company (optional)">
-    					<label for="floatingInput">Company (optional)</label>
-    				</div>
+				
     			<div class="form-floating col">
-    					<input style="margin-top: 20px;height: 44px" class="form-control" id="floatingInput" type="text" placeholder="Address" aria-label="Address">
-    					<label for="floatingInput">Address</label>
+    					<input value="${user.address}" style="margin-top: 20px;height: 44px;font-size: 15px" class="form-control" id="floatingInput" type="text" name="deliveryAddress" placeholder="Address" aria-label="Address" required>
+    					<label for="floatingInput">Địa Chỉ</label>
     				</div>
+				
+  					
 				<div class="form-floating col">
-						<input style="margin-top: 20px;height: 44px" class="form-control " id="floatingInput" type="text" placeholder="Apartment,suite,etc. (optional)" aria-label="Apartment,suite,etc. (optional)">
-						<label for="floatingInput">Apartment,suite,etc. (optional)</label>
-					</div>	
-  					<div class="row" style="margin-top: 20px">
-  						<div class="col">
-  							<div class="form-floating">
-  								<input type="text" class="form-control" placeholder="City" aria-label="City" style="height: 44px">
-  								<label for="floatingInput">City</label>
-  					</div>
-    					
-  					</div>
-  					<div class="col">
-  						<div class="form-floating">
-  							<input type="text" class="form-control" placeholder="Postal code (optional)" aria-label="Postal code (optional)" style="height: 44px">
-  							<label for="floatingInput">Postal code (optional)</label>
-  					</div>
-    					
-  					</div>
-				</div>
-				<div class="form-floating col">
-    					<input style="margin-top: 20px;height: 44px" class="form-control" id="floatingInput" type="text" name="phone" placeholder="Phone" aria-label="Phone">
-    					<label for="floatingInput">Phone</label>
+    					<input value="${user.phone}" style="margin-top: 20px;height: 44px;font-size: 15px" class="form-control" id="floatingInput" type="text" name="phone" placeholder="Phone" aria-label="Phone" >
+    					<label for="floatingInput">Số Điện Thoại</label>
     				</div>
+    				<div class="form-floating col">
+  						<textarea style="margin-top: 20px;height: 100px;font-size: 15px" class="form-control" name="orderStatus" id="orderStatus" required></textarea>
+  						<label for="floatingTextarea2">Ghi Chú</label>
+						</div>
     			<div class="mb-3 form-check" style="margin-top: 20px">
     				<input type="checkbox" class="form-check-input" id="exampleCheck2">
     				<label class="form-check-label" for="exampleCheck2">	Save this information for next time</label>
@@ -120,8 +110,8 @@
 				<div class="button_go_shopping">
 					<div class="d-flex align-items-center justify-content-between">
   						<i class="bi bi-chevron-left"></i>
- 						<a href="#"  style="color: black;text-decoration: none;padding-right: 180px">Return to Cart</a>
- 						<button class="btn btn-dark" style="width: 320px;height: 45px;font-size: 15px">CONTINUE TO SHIPPING</button>
+ 						<a href="/cart"  style="color: black;text-decoration: none;padding-right: 180px">Trở Về Cart</a>
+ 						<button type="submit" class="btn btn-dark" style="width: 320px;height: 45px;font-size: 15px">Thanh Toán</button>
 					</div>
 			</div>		
 		</div>
@@ -136,7 +126,7 @@
 					</div>
 				
 		
-		</form>
+		
 		
 		
 	
@@ -144,8 +134,9 @@
 	
 		</div>
     </div>
+<!-- CHi tiet SP-->
     <div class="col-6">
-      <div class="order-summary   " style="background: #efecec;padding-left: 40px;width: 850px;height: 1040px;font-size: 20px;font-weight: 100;">
+      <div class="order-summary   " style="background: #efecec;padding-left: 40px;width: 840px;height: 1040px;font-size: 20px;font-weight: 100;">
 			<div class="table-order-content table-responsive" >
 				<table class="product-table" style="margin-top: 80px">
      				 <caption class="visually-hidden">Shopping cart</caption>
@@ -158,38 +149,40 @@
         					</tr>
       					 	</thead>
      					<tbody data-order-summary-section="line-items">
+     					<c:forEach items="${cart.items}" var="item">
         					<tr class="product" data-product-id="" data-variant-id="" data-product-type="watch" data-customer-ready-visible="">
-         						<td class="product__image">
+         						<td class="product__image" style="width: 250px">
          							<div class="position-relative">
-  										<img class="img-fluid bg-white rounded-top rounded-end rounded-bottom rounded-start p-1" src="//cdn.shopify.com/s/files/1/0719/3244/4977/products/33e29446ea11b9a39c9518594edd8d8839768f81_small.png?v=1679582888" alt="Petite Amber - Rose Gold / 28mm">
+  										<img class="img-fluid bg-white rounded-top rounded-end rounded-bottom rounded-start p-1" src="${item.product.image}" alt="Petite Amber - Rose Gold / 28mm">
   									<div class="product__quantity position-absolute top-0 end-0 p-0">
-    									<span class="badge rounded-pill bg-secondary text-light">1</span>
+    									<span class="badge rounded-pill bg-secondary text-light">${item.quantity}</span>
   </div>
 </div>          			
-
-         						 </td>
-         						
-         			 <th class="product__description " style="padding-left: 20px" >
-           				 <span  class="product__description__name ">Petite Amber</span>    
+         						 </td>        						
+         			 <th class="product__description " style="padding-left: 20px;white-space:nowrap" >
+           				 <span  class="product__description__name ">${item.product.productName}</span>    
            				 <span style="font-size: 13px;font-weight: 100;" class="product__description__type "><br>Rose Gold / 28mm</span>  				 
-          			</th>        
-          						  
+          			</th>           						  
           			<td class="product__price">        	
-             			 <span class="order-summary " style="padding-left: 200px;"> 200000VND</span>           			 
+             			 <span class="order-summary " style="padding-left: 200px;justify-content: flex-end;display: flex;white-space:nowrap"> ${item.product.price * item.quantity}00 VNĐ</span>           			 
           			</td>
-        </tr>
-       
+          			
+        				</tr>
+      
+       </c:forEach>
+      
       </tbody>
     </table>
+    			
 				<div class="border border-Light border-bottom border-1" style="margin-top: 20px;width: 585px"></div>
 				<div class="discount" style="margin-top: 20px">
 					<nav class="navbar navbar-light ">
   				<div class="container-fluid " style="padding-left: 1px">
    					 <form class="d-flex ">
       					<input class="form-control me-2" type="search" placeholder="Discount code"  aria-label="Discount code" style="width: 360px;height: 60px;font-size: 15px">
-      						
+      	
       					<button class="btn btn-outline-success" type="submit" style="width: 115px;height: 60px;font-size: 15px">APPLY</button>
-    </form>
+    	</form>
   </div>
 </nav>
 				</div>
@@ -199,7 +192,7 @@
   					<tbody>
    					 <tr>
       					<td>Subtotal</td>
-    				  	<td style="text-align: center;">200000VND</td>
+    				  	<td style="text-align: center;">${cart.getPriceFormat()} VNĐ</td>
     				</tr>
    					 <tr>
       					<td>Shipping</td>
@@ -210,12 +203,12 @@
 			</div>
 			<div class="border border-Light border-bottom border-1" style="margin-top: 40px;width: 585px"></div>
 			
-			<div class="total" style="margin-top: 20px">
+			<div class="total" style="margin-top: 20px" >
 				<table class="table border-0 table-borderless">
   					<tbody>
    					 <tr>
-      					<td style="font-weight: 500;">Total</td>
-    				  	<td style="text-align: center;">200000VND</td>
+      					<td  style="font-weight: 500;">Total</td>
+    				  	<td  style="text-align: center;">${cart.getPriceFormat()} VNĐ</td>
     				</tr>
    					 
   </tbody>
@@ -225,10 +218,11 @@
 	</div>
 		</div>
     </div>
+   
   </div>
 </div>
 
-
+ </form>
 		
 </body>
 </html>

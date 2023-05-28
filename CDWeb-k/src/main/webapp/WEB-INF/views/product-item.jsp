@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <div class="product">
-	<a href="#" class="product-item">
+	<a href="<c:url value="/product-details/${product.productid}"/>" class="product-item">
 	    <img 
 	    	alt="product-img" 
 	    	src="${product.image}"
